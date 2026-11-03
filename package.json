@@ -68,7 +68,7 @@
     "prepare": "husky install",
     "typecheck": "tsc --noEmit",
     "preview:cloudflare": "pnpm dlx wrangler@4.85.0 pages dev build",
-    "deploy": "pnpm run build && pnpm dlx wrangler@4.85.0 pages deploy build --project-name qwerty-ielts --branch master"
+    "deploy": "pnpm run build && cross-env CLOUDFLARE_ACCOUNT_ID=5c7e1566cba16bf9893305a2ac396356 pnpm dlx wrangler@4.85.0 pages deploy build --project-name qwerty-ielts --branch master"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [

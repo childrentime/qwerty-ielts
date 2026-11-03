@@ -40,7 +40,7 @@ Production output is `build/`. `_routes.json` invokes Functions only for `/api/*
 
 ## Deployment
 
-The Cloudflare project is `qwerty-ielts`, with production branch `master`. `wrangler.toml` records its non-secret account/project configuration. After signing in to Wrangler:
+The Cloudflare project is `qwerty-ielts`, with production branch `master`. `wrangler.toml` records its non-secret project configuration; the deployment script selects the existing Cloudflare account. After signing in to Wrangler:
 
 ```sh
 pnpm run deploy
