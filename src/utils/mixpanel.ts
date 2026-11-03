@@ -1,18 +1,8 @@
 import type { TypingState } from '@/pages/Typing/store/type'
-import {
-  currentChapterAtom,
-  currentDictInfoAtom,
-  isOpenDarkModeAtom,
-  keySoundsConfigAtom,
-  phoneticConfigAtom,
-  pronunciationConfigAtom,
-  randomConfigAtom,
-} from '@/store'
-import type { InfoPanelType } from '@/typings'
-import type { PronunciationType } from '@/typings'
-import { useAtomValue } from 'jotai'
-import mixpanel from 'mixpanel-browser'
-import { useCallback } from 'react'
+import type { InfoPanelType, PronunciationType } from '@/typings'
+
+// Retain upstream event interfaces while keeping this fork's learning data local.
+const mixpanel = { track: (_event: string, _properties: unknown) => undefined }
 
 export type starAction = 'star' | 'dismiss'
 
@@ -111,89 +101,19 @@ export type ChapterLogUpload = ModeInfo & {
   countTypo: number
 }
 
-export function useMixPanelWordLogUploader(typingState: TypingState) {
-  const currentChapter = useAtomValue(currentChapterAtom)
-  const { name: dictName } = useAtomValue(currentDictInfoAtom)
-  const isDarkMode = useAtomValue(isOpenDarkModeAtom)
-  const keySoundsConfig = useAtomValue(keySoundsConfigAtom)
-  const phoneticConfig = useAtomValue(phoneticConfigAtom)
-  const pronunciationConfig = useAtomValue(pronunciationConfigAtom)
-  const randomConfig = useAtomValue(randomConfigAtom)
-
-  const wordLogUploader = useCallback(
-    (wordLog: { headword: string; timeStart: string; timeEnd: string; countInput: number; countCorrect: number; countTypo: number }) => {
-      const props: WordLogUpload = {
-        ...wordLog,
-        order: typingState.chapterData.index + 1,
-        chapter: (currentChapter + 1).toString(),
-        wordlist: dictName,
-        modeDictation: !typingState.isWordVisible,
-        modeDark: isDarkMode,
-        modeShuffle: randomConfig.isOpen,
-        enabledKeyboardSound: keySoundsConfig.isOpen,
-        enabledPhotonicsSymbol: phoneticConfig.isOpen,
-        enabledSingleWordLoop: typingState.isLoopSingleWord,
-        pronunciationAuto: pronunciationConfig.isOpen,
-        pronunciationOption: pronunciationConfig.isOpen === false ? 'none' : pronunciationConfig.type,
-      }
-      mixpanel.track('Word', props)
-    },
-    [
-      typingState,
-      currentChapter,
-      dictName,
-      isDarkMode,
-      keySoundsConfig.isOpen,
-      phoneticConfig.isOpen,
-      pronunciationConfig.isOpen,
-      pronunciationConfig.type,
-      randomConfig.isOpen,
-    ],
-  )
-
-  return wordLogUploader
+export function useMixPanelWordLogUploader(_typingState: TypingState) {
+  return (_wordLog: {
+    headword: string
+    timeStart: string
+    timeEnd: string
+    countInput: number
+    countCorrect: number
+    countTypo: number
+  }) => undefined
 }
 
-export function useMixPanelChapterLogUploader(typingState: TypingState) {
-  const currentChapter = useAtomValue(currentChapterAtom)
-  const { name: dictName } = useAtomValue(currentDictInfoAtom)
-  const isDarkMode = useAtomValue(isOpenDarkModeAtom)
-  const keySoundsConfig = useAtomValue(keySoundsConfigAtom)
-  const phoneticConfig = useAtomValue(phoneticConfigAtom)
-  const pronunciationConfig = useAtomValue(pronunciationConfigAtom)
-  const randomConfig = useAtomValue(randomConfigAtom)
-
-  const chapterLogUploader = useCallback(() => {
-    const props: ChapterLogUpload = {
-      timeEnd: getUtcStringForMixpanel(),
-      duration: typingState.timerData.time,
-      countInput: typingState.chapterData.correctCount + typingState.chapterData.wrongCount,
-      countTypo: typingState.chapterData.wrongCount,
-      countCorrect: typingState.chapterData.correctCount,
-      chapter: (currentChapter + 1).toString(),
-      wordlist: dictName,
-      modeDictation: !typingState.isWordVisible,
-      modeDark: isDarkMode,
-      modeShuffle: randomConfig.isOpen,
-      enabledKeyboardSound: keySoundsConfig.isOpen,
-      enabledPhotonicsSymbol: phoneticConfig.isOpen,
-      enabledSingleWordLoop: typingState.isLoopSingleWord,
-      pronunciationAuto: pronunciationConfig.isOpen,
-      pronunciationOption: pronunciationConfig.isOpen === false ? 'none' : pronunciationConfig.type,
-    }
-    mixpanel.track('Chapter', props)
-  }, [
-    typingState,
-    currentChapter,
-    dictName,
-    isDarkMode,
-    keySoundsConfig.isOpen,
-    phoneticConfig.isOpen,
-    pronunciationConfig.isOpen,
-    pronunciationConfig.type,
-    randomConfig.isOpen,
-  ])
-  return chapterLogUploader
+export function useMixPanelChapterLogUploader(_typingState: TypingState) {
+  return () => undefined
 }
 
 export function recordDataAction({

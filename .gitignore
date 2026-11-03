@@ -25,7 +25,6 @@ yarn-error.log*
 .yarn
 .eslintcache
 package-lock.json
-pnpm-lock.yaml
 .env
 stats.html
 
@@ -34,3 +33,6 @@ stats.html
 /blob-report/
 /playwright/.cache/
 playwright-report
+# Cloudflare local state
+.wrangler/
+.dev.vars*

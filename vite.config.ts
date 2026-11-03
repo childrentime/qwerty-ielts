@@ -12,7 +12,7 @@ import type { PluginOption } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
   const latestCommitHash = await new Promise<string>((resolve) => {
-    return getLastCommit((err, commit) => (err ? 'unknown' : resolve(commit.shortHash)))
+    return getLastCommit((err, commit) => resolve(err ? 'unknown' : commit.shortHash))
   })
   return {
     plugins: [
@@ -28,6 +28,15 @@ export default defineConfig(async ({ mode }) => {
         },
       }),
     ],
+    server: {
+      proxy: {
+        '/api/audio': {
+          target: 'https://dict.youdao.com',
+          changeOrigin: true,
+          rewrite: (url) => url.replace('/api/audio', '/dictvoice'),
+        },
+      },
+    },
     build: {
       minify: true,
       outDir: 'build',

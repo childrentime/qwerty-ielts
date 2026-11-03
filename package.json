@@ -1,5 +1,5 @@
 {
-  "name": "qwerty-learner",
+  "name": "qwerty-ielts",
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
@@ -60,12 +60,15 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "cross-env CI=false vite build --base=./",
-    "test": "echo \"No tests\"",
+    "build": "vite build --base=/ && node scripts/prune-build.mjs",
+    "test": "node --test tests/audio.test.mjs",
     "test:e2e": "playwright test",
     "lint": "eslint .",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typecheck": "tsc --noEmit",
+    "preview:cloudflare": "pnpm dlx wrangler@4.85.0 pages dev build",
+    "deploy": "pnpm run build && pnpm dlx wrangler@4.85.0 pages deploy build --project-name qwerty-ielts --branch master"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -123,5 +126,6 @@
     "typescript-plugin-css-modules": "^5.0.1",
     "unplugin-icons": "^0.16.1",
     "vite": "^4.1.1"
-  }
+  },
+  "packageManager": "pnpm@9.5.0"
 }

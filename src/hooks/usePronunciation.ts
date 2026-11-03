@@ -1,7 +1,6 @@
 import { pronunciationConfigAtom } from '@/store'
 import type { PronunciationType } from '@/typings'
 import { addHowlListener } from '@/utils'
-import { romajiToHiragana } from '@/utils/kana'
 import noop from '@/utils/noop'
 import type { Howl } from 'howler'
 import { useAtomValue } from 'jotai'
@@ -9,29 +8,10 @@ import { useEffect, useMemo, useState } from 'react'
 import useSound from 'use-sound'
 import type { HookOptions } from 'use-sound/dist/types'
 
-const pronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 export function generateWordSoundSrc(word: string, pronunciation: Exclude<PronunciationType, false>): string {
-  switch (pronunciation) {
-    case 'uk':
-      return `${pronunciationApi}${word}&type=1`
-    case 'us':
-      return `${pronunciationApi}${word}&type=2`
-    case 'romaji':
-      return `${pronunciationApi}${romajiToHiragana(word)}&le=jap`
-    case 'zh':
-      return `${pronunciationApi}${word}&le=zh`
-    case 'ja':
-      return `${pronunciationApi}${word}&le=jap`
-    case 'de':
-      return `${pronunciationApi}${word}&le=de`
-    case 'hapin':
-    case 'kk':
-      return `${pronunciationApi}${word}&le=ru` // 有道不支持哈萨克语, 暂时用俄语发音兜底
-    case 'id':
-      return `${pronunciationApi}${word}&le=id`
-    default:
-      return ''
-  }
+  if (pronunciation !== 'uk' && pronunciation !== 'us') return ''
+  const query = new URLSearchParams({ audio: word, type: pronunciation === 'uk' ? '1' : '2' })
+  return `/api/audio?${query}`
 }
 
 export default function usePronunciationSound(word: string, isLoop?: boolean) {
@@ -89,7 +69,6 @@ export function usePrefetchPronunciationSound(word: string | undefined) {
       audio.src = soundUrl
       audio.preload = 'auto'
 
-      // gpt 说这这两行能尽可能规避下载插件被触发问题。 本地测试不加也可以，考虑到别的插件可能有问题，所以加上保险
       audio.crossOrigin = 'anonymous'
       audio.style.display = 'none'
 
