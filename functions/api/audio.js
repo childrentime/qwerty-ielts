@@ -30,7 +30,7 @@ export async function onRequest({ request, waitUntil }) {
   try {
     const upstream = await fetch(`${AUDIO_ORIGIN}?${query}`, {
       headers: { Accept: 'audio/mpeg, audio/*;q=0.9' },
-      redirect: 'error',
+      redirect: 'manual',
       signal: AbortSignal.timeout(12000),
     })
     if (!upstream.ok || !upstream.headers.get('Content-Type')?.toLowerCase().startsWith('audio/')) {

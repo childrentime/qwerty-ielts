@@ -49,6 +49,7 @@ test('serves and caches UK and US audio separately without forwarding cookies', 
     assert.equal(response.headers.get('Set-Cookie'), null)
     assert.equal(response.headers.get('Cross-Origin-Resource-Policy'), 'same-origin')
     const url = new URL(requests.at(-1).url)
+    assert.equal(requests.at(-1).options.redirect, 'manual')
     assert.equal(url.origin, 'https://dict.youdao.com')
     assert.equal(url.pathname, '/dictvoice')
     assert.equal(url.searchParams.get('audio'), 'ice cream & coffee')
@@ -80,6 +81,7 @@ test('HEAD has no body and shares the GET cache', async () => {
 test('upstream errors, HTML and network failures are not cached as audio', async () => {
   for (const upstream of [
     () => new Response('blocked', { status: 403 }),
+    () => new Response(null, { status: 302, headers: { Location: 'https://example.com' } }),
     () => new Response('<html>error</html>', { headers: { 'Content-Type': 'text/html' } }),
     () => {
       throw new Error('timeout')
