@@ -54,7 +54,7 @@ export default function App() {
   }, [])
   const store = useStore(toast)
   const [preview, setPreview] = useState(new URLSearchParams(window.location.search).get('view') === 'phone')
-  const [narrow, setNarrow] = useState(window.matchMedia('(max-width: 760px)').matches)
+  const [narrow, setNarrow] = useState(window.matchMedia('(max-width: 680px)').matches)
   const mobile = narrow || preview
   const [modal, setModal] = useState<'search' | 'sync' | 'help' | 'welcome' | null>(null)
   const [selectedWord, setSelectedWord] = useState<Word | null>(null)
@@ -68,7 +68,7 @@ export default function App() {
     navigate('writing')
   }
   useEffect(() => {
-    const media = window.matchMedia('(max-width: 760px)'),
+    const media = window.matchMedia('(max-width: 680px)'),
       handler = () => setNarrow(media.matches)
     media.addEventListener('change', handler)
     const onNetwork = () => setOnline(navigator.onLine)

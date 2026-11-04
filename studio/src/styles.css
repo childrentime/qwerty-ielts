@@ -316,6 +316,7 @@ kbd {
   top: 16px;
 }
 .app-shell {
+  overflow: hidden;
   height: 100dvh;
   min-height: 480px;
   display: flex;
@@ -324,6 +325,10 @@ kbd {
   isolation: isolate;
 }
 .sidebar {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
   width: 224px;
   flex-shrink: 0;
   display: flex;
@@ -4705,7 +4710,7 @@ kbd {
     margin-top: 25px;
   }
 }
-@media (min-width: 761px) and (max-width: 1190px) {
+@media (min-width: 681px) and (max-width: 1190px) {
   .sidebar {
     width: 191px;
     padding-left: 13px;
@@ -4905,7 +4910,7 @@ kbd {
     margin-left: 6px;
   }
 }
-@media (min-width: 761px) and (max-width: 970px) {
+@media (min-width: 681px) and (max-width: 970px) {
   .sidebar {
     width: 170px;
   }
@@ -5152,7 +5157,7 @@ kbd {
     display: none;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 680px) {
   .modal-backdrop {
     padding: 18px;
   }
@@ -5414,7 +5419,7 @@ kbd {
 .mobile .example-note > p {
   font-size: 12px;
 }
-@media (min-width: 761px) and (max-width: 970px) {
+@media (min-width: 681px) and (max-width: 970px) {
   .hero-copy p {
     font-size: 12px;
   }
@@ -5432,5 +5437,24 @@ kbd {
   }
   .art-caption {
     bottom: 20px;
+  }
+}
+
+@media (max-height: 800px) and (min-width: 681px) {
+  .sidebar {
+    padding-top: 24px;
+  }
+  .workspace-label {
+    margin-top: 25px;
+    margin-bottom: 24px;
+  }
+  .sidebar-note {
+    display: none;
+  }
+  .sidebar-bottom {
+    padding-top: 24px;
+  }
+  .local-account {
+    margin-top: 12px;
   }
 }
