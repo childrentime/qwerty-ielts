@@ -47,3 +47,16 @@ test('product styles and charts cannot bypass paired theme colors', () => {
     assert.ok(css.includes(`--${c.name}: ${c.dark}`))
   }
 })
+
+test('all native captures remain intact RIFF WebP binaries after checkout', async () => {
+  const { readdirSync } = await import('node:fs')
+  const dir = new URL('../public/native/', import.meta.url)
+  const files = readdirSync(dir).filter(f => f.endsWith('.webp'))
+  assert.equal(files.length, 18)
+  for (const name of files) {
+    const bytes = readFileSync(new URL(name, dir))
+    assert.equal(bytes.toString('ascii',0,4),'RIFF',name)
+    assert.equal(bytes.toString('ascii',8,12),'WEBP',name)
+    assert.equal(bytes.readUInt32LE(4)+8, bytes.length, `${name}: changed binary length`)
+  }
+})
