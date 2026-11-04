@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { validateBackup } from './domain.mjs'
 import { words } from './data'
 
-export type Route = 'today' | 'practice' | 'review' | 'library' | 'writing' | 'settings'
+export type Route = 'today' | 'practice' | 'review' | 'library' | 'writing' | 'settings' | 'design' | 'app'
 export type History = { id: string; promptId: string; text: string; original: string; at: number }
 export type State = {
   version: 1
@@ -119,7 +119,7 @@ export function navigate(route: Route) {
 export function useRoute(): Route {
   const get = () => {
     const route = window.location.hash.replace(/^#\//, '').split('?')[0]
-    return ['today', 'practice', 'review', 'library', 'writing', 'settings'].includes(route)
+    return ['today', 'practice', 'review', 'library', 'writing', 'settings', 'design', 'app'].includes(route)
       ? (route as Route)
       : 'today'
   }

@@ -7,9 +7,10 @@
   "packageManager": "pnpm@9.5.0",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4173",
-    "build": "tsc --noEmit && vite build && node scripts/build-offline.mjs",
+    "build": "pnpm colors && tsc --noEmit && vite build && node scripts/build-offline.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "colors": "node scripts/colors.mjs"
   },
   "dependencies": {
     "lucide-react": "0.294.0",

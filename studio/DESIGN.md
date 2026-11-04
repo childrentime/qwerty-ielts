@@ -40,3 +40,12 @@ Shared buttons, topic chips, activity rows, word cards, progress indicators, dia
 ## Evaluation
 
 The design should make it possible to decide whether learning words on a computer and revisiting vocabulary plus corrected expressions on a phone creates a coherent product. The reviewable deliverable is a functional frontend, not a claim that native iOS packaging or production cloud services are complete.
+
+## Appearance and reference boards (0.2)
+
+- `#/design` is the live color board: all 77 paired semantic, state, chart, illustration, border and shadow colors, with light/dark component examples and copyable values.
+- `src/colors.json` is the color source; `pnpm colors` generates `src/themes.css`. Product CSS and SVG charts use tokens; regression checks reject new unpaired hex colors and verify a 4.5:1 contrast minimum for core text, primary controls and answer state pairs.
+- Every product page, search/word/sync dialog, chart and phone preview reads the theme. A persistent header button switches light/dark; settings also supports system preference updates.
+- `#/app` shows nine states of the independently implemented native SwiftUI prototype, each with light/dark simulator captures. It is a screen reference gallery; the separate phone webpage link remains the browser interaction preview.
+- Native source is kept outside this public GPL repository. It was built and checked on a dedicated iPhone 16e simulator. This public directory contains only the exported WebP UI captures.
+- Native/cloud boundary: twelve sample words and three writing examples are local prototype content. No claim of web/iPhone data synchronization, Apple authentication or online AI feedback is made before those integrations are configured.

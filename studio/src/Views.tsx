@@ -1168,7 +1168,9 @@ export function Preferences({ store, toast, openSync }: ViewProps & { openSync: 
               让单词、搭配和你自己的表达，在同一个地方生长。
             </p>
             <div>
-              <span>交互设计版 · 0.1</span>
+              <span>交互设计版 · 0.2</span>
+              <button onClick={() => navigate('design')}>色彩画板</button>
+              <button onClick={() => navigate('app')}>原生 App 原型</button>
               <a href="https://github.com/childrentime/qwerty-ielts" target="_blank" rel="noreferrer">
                 网页源码与 GPL-3.0 许可
                 <ArrowUpRight size={13} />

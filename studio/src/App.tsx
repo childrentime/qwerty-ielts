@@ -11,8 +11,11 @@ import {
   HelpCircle,
   Home,
   Keyboard,
+  Palette,
   Leaf,
   Monitor,
+  Moon,
+  Sun,
   PenTool,
   Search,
   Settings,
@@ -27,6 +30,7 @@ import { navigate, Route, useRoute, useStore } from './model'
 import { Brand, Button, IconButton, Modal, speak, Tag } from './ui'
 import { Today, Practice, Review, Library, Preferences } from './Views'
 import { Writing } from './Writing'
+import { DesignBoard, AppPrototype } from './Design'
 
 const nav: { id: Route; label: string; en: string; icon: typeof Home }[] = [
   { id: 'today', label: '今日', en: 'Overview', icon: Home },
@@ -83,7 +87,10 @@ export default function App() {
   }, [])
   useEffect(() => {
     mainRef.current?.scrollTo(0, 0)
-    document.title = `${nav.find((n) => n.id === route)?.label || '设置'} · Wordloom`
+    document.title = `${
+      nav.find((n) => n.id === route)?.label ||
+      (route === 'design' ? '色彩画板' : route === 'app' ? 'App 原型' : '设置')
+    } · Wordloom`
   }, [route, mobile])
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)')
@@ -168,6 +175,14 @@ export default function App() {
               ))}
             </nav>
             <div className="sidebar-bottom">
+              <div className="design-links">
+                <button onClick={() => navigate('design')} className={route === 'design' ? 'active' : ''}>
+                  <Palette size={15} /> 色彩画板
+                </button>
+                <button onClick={() => navigate('app')} className={route === 'app' ? 'active' : ''}>
+                  <Smartphone size={15} /> 原生 App
+                </button>
+              </div>
               <div className="sidebar-note">
                 <span className="serif">A little, every day.</span>
                 <p>
@@ -207,7 +222,10 @@ export default function App() {
               <div className="breadcrumbs">
                 我的空间
                 <ChevronRight size={13} />
-                <span>{nav.find((n) => n.id === route)?.label || '设置'}</span>
+                <span>
+                  {nav.find((n) => n.id === route)?.label ||
+                    (route === 'design' ? '色彩画板' : route === 'app' ? 'App 原型' : '设置')}
+                </span>
               </div>
             )}
             <div className="topbar-actions">
@@ -227,6 +245,26 @@ export default function App() {
                   </IconButton>
                 </>
               )}
+              <IconButton
+                label={document.documentElement.dataset.theme === 'dark' ? '切换到浅色模式' : '切换到深色模式'}
+                onClick={() =>
+                  store.setState((p) => ({
+                    ...p,
+                    settings: {
+                      ...p.settings,
+                      theme: document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark',
+                    },
+                  }))
+                }
+              >
+                {store.state.settings.theme === 'dark' ||
+                (store.state.settings.theme === 'system' &&
+                  window.matchMedia('(prefers-color-scheme: dark)').matches) ? (
+                  <Sun size={18} />
+                ) : (
+                  <Moon size={18} />
+                )}
+              </IconButton>
               <button aria-label="iCloud 同步状态" className="sync-status" onClick={() => setModal('sync')}>
                 <CloudOff size={mobile ? 18 : 15} />
                 {!mobile && <span>仅此设备</span>}
@@ -250,6 +288,8 @@ export default function App() {
             {route === 'review' && <Review {...props} />}
             {route === 'library' && <Library {...props} />}
             {route === 'writing' && <Writing {...props} initialPrompt={promptId} />}
+            {route === 'design' && <DesignBoard />}
+            {route === 'app' && <AppPrototype />}
             {route === 'settings' && <Preferences {...props} openSync={() => setModal('sync')} />}
           </main>
           {mobile && (

@@ -66,42 +66,42 @@ function TransportChart() {
             {y}
           </text>
         ))}
-        <polyline points="65,55 265,74 465,103" fill="none" stroke="#bb7755" strokeWidth="3" />
-        <polyline points="65,91 265,67 465,36" fill="none" stroke="#467b62" strokeWidth="3" />
-        <polyline points="65,139 265,144 465,146" fill="none" stroke="#9b9d73" strokeWidth="3" />
+        <polyline points="65,55 265,74 465,103" fill="none" stroke="var(--chart-car)" strokeWidth="3" />
+        <polyline points="65,91 265,67 465,36" fill="none" stroke="var(--chart-bus)" strokeWidth="3" />
+        <polyline points="65,139 265,144 465,146" fill="none" stroke="var(--chart-bike)" strokeWidth="3" />
         {[
           [65, 55],
           [265, 74],
           [465, 103],
         ].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="4" fill="#bb7755" />
+          <circle key={i} cx={x} cy={y} r="4" fill="var(--chart-car)" />
         ))}
         {[
           [65, 91],
           [265, 67],
           [465, 36],
         ].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="4" fill="#467b62" />
+          <circle key={i} cx={x} cy={y} r="4" fill="var(--chart-bus)" />
         ))}
         {[
           [65, 139],
           [265, 144],
           [465, 146],
         ].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="4" fill="#9b9d73" />
+          <circle key={i} cx={x} cy={y} r="4" fill="var(--chart-bike)" />
         ))}
       </svg>
       <div className="chart-legend">
         <span>
-          <i style={{ background: '#bb7755' }} />
+          <i style={{ background: 'var(--chart-car)' }} />
           Car
         </span>
         <span>
-          <i style={{ background: '#467b62' }} />
+          <i style={{ background: 'var(--chart-bus)' }} />
           Public transport
         </span>
         <span>
-          <i style={{ background: '#9b9d73' }} />
+          <i style={{ background: 'var(--chart-bike)' }} />
           Bicycle
         </span>
         <small>原创练习题</small>
