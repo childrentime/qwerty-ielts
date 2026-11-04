@@ -689,6 +689,12 @@ function MobileWriting({ store, toast, openWord }: ViewProps) {
     [selected, setSelected] = useState<number | null>(null),
     [done, setDone] = useState(false),
     [opened, setOpened] = useState<History | null>(null)
+  useEffect(() => {
+    document.getElementById('main-content')?.scrollTo({ top: 0 })
+  }, [index, example, tab, done])
+  useEffect(() => {
+    if (selected !== null) document.querySelector('.expression-explanation')?.scrollIntoView({ block: 'nearest' })
+  }, [selected])
   const sampleReport = checkWriting(prompts[0].starter, 'sentence', prompts[0].targets)
   const exampleRecord: History = {
     id: 'example',
@@ -887,7 +893,7 @@ function MobileWriting({ store, toast, openWord }: ViewProps) {
                     {selected !== null && choices[selected] === current.text
                       ? '是的，这样更自然。'
                       : '一起看看修改后的表达。'}{' '}
-                    注意情态动词后的动词形式，以及表示目的时的不定式。
+                    {checkedOriginal?.issues.map((issue) => issue.explanation).join(' ')}
                   </p>
                 )}
                 <div className="expression-word-chips">

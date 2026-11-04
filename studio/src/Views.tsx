@@ -309,6 +309,9 @@ export function Practice({ store, mobile, toast, openWord, startWriting }: ViewP
     }
     if (!mobile) input.current?.focus()
   }, [topic, index, finished, mobile])
+  useEffect(() => {
+    document.getElementById('main-content')?.scrollTo({ top: 0 })
+  }, [topic, index, finished])
   const next = () => {
     if (index === list.length - 1) {
       setFinished(true)
@@ -565,6 +568,12 @@ export function Review({ store, mobile, toast, openWord, startWriting }: ViewPro
   useEffect(() => {
     if (current && mode === 'listening' && !finished) speak(current, store.state.settings, toast)
   }, [index, queue, mode, finished])
+  useEffect(() => {
+    document.getElementById('main-content')?.scrollTo({ top: 0 })
+  }, [queue.length, index, finished])
+  useEffect(() => {
+    if (answer) document.querySelector('.review-answer-note')?.scrollIntoView({ block: 'nearest' })
+  }, [answer])
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (
