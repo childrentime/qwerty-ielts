@@ -4,3 +4,6 @@
 *.jpeg binary
 *.ico binary
 *.wav binary
+
+# WebP captures are binary; never normalize their line endings.
+*.webp binary
