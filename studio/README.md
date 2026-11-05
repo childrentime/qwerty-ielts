@@ -27,6 +27,6 @@ The development address is http://127.0.0.1:4173. Add `?view=phone` to inspect t
 
 ## Service boundaries
 
-This is a complete interactive product-design frontend, not a released native iOS application. CloudKit / Apple authentication and online AI assessment are not configured. The interface displays the disconnected state; no data is uploaded. Pronunciation uses the device speech engine for this preview, pending pre-generated commercial TTS assets. No IELTS score prediction is fabricated. The hosted preview uses an isolated Cloudflare Pages branch and does not replace the original IELTS typing site.
+This is a complete interactive product-design frontend, not a released native iOS application. CloudKit / Apple authentication are not configured. Online AI writing assessment is outside the agreed scope; AI is used only for pre-generating curated vocabulary content. The interface displays the disconnected state; no data is uploaded. Pronunciation uses the device speech engine for this preview, pending pre-generated commercial TTS assets. No IELTS score prediction is fabricated. The hosted preview uses an isolated Cloudflare Pages branch and does not replace the original IELTS typing site.
 
 Data structure and design decisions are documented in DESIGN.md. The web source is distributed under the repository's GPL-3.0 license. Experience-set definitions, examples and practice prompts were authored for this build; restricted upstream dictionary data is not bundled in this frontend.

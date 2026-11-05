@@ -121,8 +121,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
   const [focused, setFocused] = useState(false),
     [running, setRunning] = useState(false),
     [elapsed, setElapsed] = useState(0)
-  const [openedHistory, setOpenedHistory] = useState<History | null>(null),
-    [sampleFeedback, setSampleFeedback] = useState(false)
+  const [openedHistory, setOpenedHistory] = useState<History | null>(null)
   const editor = useRef<HTMLTextAreaElement>(null)
   const wordCount = countWords(text),
     minimum = prompt.mode === 'task1' ? 150 : prompt.mode === 'task2' ? 250 : 0
@@ -574,13 +573,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
                           <Check size={15} />
                         </Button>
                       )}
-                      <p className="caption">
-                        基础检查覆盖少量明确的语言规则，不评估完整论证，也不预测雅思分数。在线 AI 深度点评尚未连接。
-                      </p>
-                      <button className="feedback-sample-link" onClick={() => setSampleFeedback(true)}>
-                        看看深度反馈的设计示例
-                        <ArrowUpRight size={14} />
-                      </button>
+                      <p className="caption">基础检查覆盖少量明确的语言规则，可对照参考表达继续修改。</p>
                     </>
                   ) : (
                     <div className="feedback-empty">
@@ -590,7 +583,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
                       <Button variant="secondary" onClick={loadExample}>
                         载入一段示例
                       </Button>
-                      <p className="caption">当前提供本地基础检查，在线 AI 深度点评尚未连接。</p>
+                      <p className="caption">检查在此设备完成，不上传写作内容。</p>
                     </div>
                   )}
                 </div>
@@ -630,42 +623,6 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
               <ArrowRight size={16} />
             </Button>
           </div>
-        </Modal>
-      )}
-      {sampleFeedback && (
-        <Modal
-          title="表达可以怎样变得更自然"
-          eyebrow="反馈样式示例 · 非当前草稿的 AI 分析"
-          wide
-          onClose={() => setSampleFeedback(false)}
-        >
-          <div className="history-original">
-            <span className="eyebrow">示例原句</span>
-            <p>Governments should spend money on buses because it is good for traffic.</p>
-          </div>
-          <div className="history-final">
-            <span className="eyebrow">一种更具体的表达</span>
-            <p>
-              Governments should invest in public transport to alleviate traffic congestion and improve access to jobs.
-            </p>
-          </div>
-          <div className="sample-feedback-points">
-            <article>
-              <Tag>表达准确性</Tag>
-              <p>把含糊的 good for traffic 具体化为 alleviate traffic congestion，让读者清楚知道改善了什么。</p>
-            </article>
-            <article>
-              <Tag>词语搭配</Tag>
-              <p>invest in public transport 适合讨论公共投入，比 spend money on buses 更概括。</p>
-            </article>
-            <article>
-              <Tag>观点展开</Tag>
-              <p>补充 improve access to jobs，给公共交通投资增加一个具体理由。只有符合原本观点时才采用。</p>
-            </article>
-          </div>
-          <Button className="full-width" onClick={() => setSampleFeedback(false)}>
-            回到我的表达
-          </Button>
         </Modal>
       )}
     </div>

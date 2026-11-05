@@ -9,7 +9,7 @@ Working name: Wordloom. The product connects vocabulary recognition with written
 - Every count derives from local activity. The initial account has no fabricated learning history.
 - Vocabulary is an original AI-authored, curated experience set. It is not copied from the restricted upstream dictionary.
 - Drafts, seen words, favorites, completed reviews, writing history and preferences persist locally. Export / validated import support moving this preview between devices.
-- CloudKit / Sign in with Apple and online AI assessment are not configured in this design build. Their interfaces expose the real disconnected state. No fake cloud sync, AI grading, or IELTS band prediction.
+- CloudKit / Sign in with Apple are not configured in this design build. Their interfaces expose the real disconnected state. Online AI writing assessment and IELTS score prediction are outside the agreed scope. AI is used only for pre-generating curated vocabulary content.
 - Device speech synthesis provides preview pronunciation. Production audio will use pre-generated officially licensed TTS files.
 
 ## Color
@@ -48,4 +48,4 @@ The design should make it possible to decide whether learning words on a compute
 - Every product page, search/word/sync dialog, chart and phone preview reads the theme. A persistent header button switches light/dark; settings also supports system preference updates.
 - `#/app` shows nine states of the independently implemented native SwiftUI prototype, each with light/dark simulator captures. It is a screen reference gallery; the separate phone webpage link remains the browser interaction preview.
 - Native source is kept outside this public GPL repository. It was built and checked on a dedicated iPhone 16e simulator. This public directory contains only the exported WebP UI captures.
-- Native/cloud boundary: twelve sample words and three writing examples are local prototype content. No claim of web/iPhone data synchronization, Apple authentication or online AI feedback is made before those integrations are configured.
+- Native/cloud boundary: twelve sample words and three writing examples are local prototype content. Web/iPhone data synchronization and Apple authentication await configuration. Writing uses local practice, reference examples and deterministic checks; online AI assessment is not planned.

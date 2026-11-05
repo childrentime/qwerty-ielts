@@ -131,7 +131,7 @@ export function AppPrototype() {
           ))}
           <div className="native-boundary">
             <strong>可运行的原生交互</strong>
-            <p>底部导航、选择题、收藏、表达卡片、写作详情和外观切换已实现。云同步与在线批改等待账号配置。</p>
+            <p>底部导航、选择题、收藏、表达卡片、写作详情和外观切换已实现。跨设备同步等待 iCloud 配置。</p>
           </div>
         </aside>
         <div className="native-preview">
