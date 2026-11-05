@@ -1360,15 +1360,19 @@ select {
 }
 .typing-input-wrap input {
   flex: 1;
+  min-width: 0;
   background: transparent;
   border: 0;
+  border-radius: 0;
   padding: 6px 0;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
-.typing-input-wrap input:focus {
+.typing-input-wrap input:focus,
+.typing-input-wrap input:focus-visible {
+  outline: none;
   box-shadow: none;
 }
 .typing-input-wrap:focus-within {
