@@ -82,8 +82,8 @@ export function Today({
       <div className="today-intro">
         <div>
           <span className="eyebrow">{date}</span>
-          <h1>今日</h1>
-          <p>继续学习，或者回顾已经见过的词。</p>
+          <h1>让英语，成为日常。</h1>
+          <p>电脑上练习，闲暇时回顾。</p>
         </div>
         <button className="goal-pill" onClick={onWelcome}>
           <Target size={15} />
@@ -91,119 +91,45 @@ export function Today({
           <ChevronRight size={14} />
         </button>
       </div>
-      <section className="study-start">
-        <div className="study-start-copy">
-          <span className="study-symbol">{mobile ? <BookOpen size={26} /> : <Keyboard size={26} />}</span>
-          <div>
-            <h2>{mobile ? '继续复习' : '开始今天的练习'}</h2>
-            <p>{mobile ? `${seen} 个见过的词，可以继续回顾。` : '听发音、记拼写，把新词留在学习记录里。'}</p>
+      <div className="today-feature">
+        <section className="study-start">
+          <div className="study-start-copy">
+            <span className="hero-kicker">YOUR DAILY PRACTICE</span>
+            <h2>{mobile ? <>见过的词，<br />再见一面。</> : <>从一个词，<br />到你的表达。</>}</h2>
+            <p>{mobile ? `${seen} 个词，接着上次继续。` : '听见、敲下、记住。让每次遇见都有回响。'}</p>
+            <div className="study-start-actions">
+              <Button onClick={() => mobile ? navigate('review') : store.state.onboarded ? navigate('practice') : onWelcome()}>
+                {mobile ? '开始复习' : '开始练词'} <ArrowRight size={16} />
+              </Button>
+              <button className="hero-secondary" onClick={() => startWriting()}>写作练习 <ArrowUpRight size={15}/></button>
+            </div>
           </div>
-        </div>
-        <div className="study-start-actions">
-          <Button
-            onClick={() => (mobile ? navigate('review') : store.state.onboarded ? navigate('practice') : onWelcome())}
-          >
-            {mobile ? '开始复习' : '开始练词'}
-            <ArrowRight size={16} />
-          </Button>
-          <button className="quiet-button" onClick={() => startWriting()}>
-            写作练习
-            <ChevronRight size={14} />
-          </button>
-        </div>
-      </section>
-      <div className="today-grid">
-        <section className="journey-panel">
-          <SectionHead label="YOUR LEARNING LOOP" title="学习记录">
-            <span className="quiet-label">随时继续</span>
-          </SectionHead>
-          <div className="journey-steps">
-            <button onClick={() => navigate('practice')}>
-              <span className="step-number">01</span>
-              <span className="step-icon">
-                <Keyboard size={21} />
-              </span>
-              <h3>练词</h3>
-              <p>听发音，敲下拼写</p>
-              <div className="step-stat">
-                <strong>{seen}</strong>
-                <span>个词已见过</span>
-                <ArrowUpRight size={16} />
-              </div>
-            </button>
-            <button onClick={() => navigate('review')}>
-              <span className="step-number">02</span>
-              <span className="step-icon peach">
-                <BookOpen size={21} />
-              </span>
-              <h3>复习</h3>
-              <p>释义选择与听音辨词</p>
-              <div className="step-stat">
-                <strong>{reviewed}</strong>
-                <span>个词已复习</span>
-                <ArrowUpRight size={16} />
-              </div>
-            </button>
-            <button onClick={() => startWriting()}>
-              <span className="step-number">03</span>
-              <span className="step-icon sage">
-                <PenTool size={21} />
-              </span>
-              <h3>写作</h3>
-              <p>句子、Task 1 与 Task 2</p>
-              <div className="step-stat">
-                <strong>{store.state.writingHistory.length}</strong>
-                <span>次表达已留下</span>
-                <ArrowUpRight size={16} />
-              </div>
-            </button>
+          <div className="word-stack" aria-hidden="true">
+            <span className="stack-back"/><span className="stack-middle"/>
+            <div className="stack-front"><span>WORDLOOM</span><strong>Aa<span>↗</span></strong><small>WORDS INTO WORLDS</small></div>
           </div>
         </section>
         <section className="daily-panel">
-          <div className="daily-head">
-            <h3>今日目标</h3>
-            <button aria-label="调整每日目标" onClick={onWelcome}>
-              <SlidersHorizontal size={16} />
-            </button>
-          </div>
+          <div className="daily-head"><h3>今日积累</h3><button aria-label="调整每日目标" onClick={onWelcome}><SlidersHorizontal size={16}/></button></div>
           <div className="daily-progress">
             <div className="progress-ring">
-              <svg viewBox="0 0 100 100">
-                <circle className="ring-background" cx="50" cy="50" r="42" />
-                <circle
-                  className="ring-value"
-                  cx="50"
-                  cy="50"
-                  r="42"
-                  style={{ strokeDasharray: `${Math.min(todayWords / store.state.settings.goal, 1) * 264} 264` }}
-                />
-              </svg>
-              <span>
-                <strong>{todayWords}</strong>
-                <small>/ {store.state.settings.goal} 词</small>
-              </span>
-            </div>
-            <div>
-              <strong>{todayWords ? '继续保持' : '还未开始'}</strong>
-              <p>{todayWords ? `今天已经遇见 ${todayWords} 个词` : '今天的积累，从这里出发'}</p>
+              <svg viewBox="0 0 100 100"><circle className="ring-background" cx="50" cy="50" r="42"/><circle className="ring-value" cx="50" cy="50" r="42" style={{strokeDasharray:`${Math.min(todayWords/store.state.settings.goal,1)*264} 264`}}/></svg>
+              <span><strong>{todayWords}</strong><small>/ {store.state.settings.goal} 词</small></span>
             </div>
           </div>
           <div className="week-strip" aria-label="近七天的学习活动">
-            {week.map((d, i) => (
-              <div key={i} className={d.today ? 'current' : ''} title={`${d.count} 项活动`}>
-                <span className="week-bar">
-                  <i style={{ height: `${Math.min(26, 4 + d.count * 3)}px`, opacity: d.count ? 1 : 0.16 }} />
-                </span>
-                <small>{d.label}</small>
-              </div>
-            ))}
+            {week.map((d,i)=><div key={i} className={d.today?'current':''} title={`${d.count} 项活动`}><span className="week-bar"><i style={{height:`${Math.min(26,4+d.count*3)}px`,opacity:d.count?1:0.16}}/></span><small>{d.label}</small></div>)}
           </div>
+          <p className="daily-note">{todayWords ? '每一次遇见，都是积累。' : '今天，从一个新词开始。'}</p>
         </section>
+      </div>
+      <div className="learning-summary" aria-label="学习记录">
+        {[{count:seen,label:'见过的词',route:'practice' as const},{count:reviewed,label:'回顾过的词',route:'review' as const},{count:store.state.writingHistory.length,label:'留下的表达',route:'writing' as const}].map(item=><button key={item.route} onClick={()=>item.route==='writing'?startWriting():navigate(item.route)}><strong>{String(item.count).padStart(2,'0')}</strong><span>{item.label}</span><ArrowUpRight size={16}/></button>)}
       </div>
       <div className="today-lower">
         <section className="recent-panel">
           <SectionHead
-            label={recent.length ? 'WORDS YOU HAVE MET' : 'YOUR NEXT WORDS'}
+            label=""
             title={recent.length ? '最近的词' : '接下来学习'}
           >
             <TextLink onClick={() => navigate('library')}>打开词库</TextLink>
@@ -226,7 +152,7 @@ export function Today({
           <div className="writing-invite-icon">
             <PenTool size={22} strokeWidth={1.5} />
           </div>
-          <span className="eyebrow">A WORD OF YOUR OWN</span>
+          <span className="eyebrow">WORDS → WRITING</span>
           <h3>{lastDraft ? '继续上次写作' : '句子练习'}</h3>
           <p>
             {lastDraft

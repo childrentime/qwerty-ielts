@@ -98,9 +98,11 @@ export default function App() {
   }, [route, mobile])
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const paramTheme = new URLSearchParams(window.location.search).get('theme')
     const update = () => {
+      const currentSetting = ['light', 'dark', 'system'].includes(paramTheme || '') ? paramTheme : store.state.settings.theme
       const resolved =
-        store.state.settings.theme === 'system' ? (media.matches ? 'dark' : 'light') : store.state.settings.theme
+        currentSetting === 'system' ? (media.matches ? 'dark' : 'light') : currentSetting
       document.documentElement.dataset.theme = resolved
       setDarkMode(resolved === 'dark')
       document

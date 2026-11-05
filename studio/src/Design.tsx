@@ -20,13 +20,17 @@ export function DesignBoard() {
       <div className="design-heading">
         <div>
           <h1>设计系统</h1>
-          <p>系统字体、语义颜色与原生控件。网页和 App 使用统一的视觉语言。</p>
+          <p>墨黑建立主次，雾紫标记学习，淡玫瑰留给写作。网页与原生 App 共用这套视觉语言。</p>
         </div>
         <Button variant="secondary" onClick={() => navigate('app')}>
           <Smartphone size={17} />
           查看 App 原型
         </Button>
       </div>
+      <section className="design-direction">
+        <div><span className="hero-kicker">WORDLOOM · VISUAL DIRECTION 04</span><h2>安静，但有自己的性格。</h2><p>一个主动作。清楚的阅读层级。留给内容的空间。</p><div className="direction-colors" aria-label="墨黑、雾紫、淡玫瑰"><i/><i/><i/></div></div>
+        <div className="direction-reference"><strong>参考研究 · Nixtio / Dribbble Select</strong><p>借鉴黑色操作、轻柔分区和不对称构图；复习与写作界面围绕 Wordloom 的实际流程重新设计。</p><a href="https://dribbble.com/shots/27301863-Language-Learning-Dashboard-Web-App-UI" target="_blank" rel="noreferrer">查看原始设计 <ArrowRight size={13}/></a></div>
+      </section>
       <div className="palette-intro">
         <span>
           <strong>{colors.length}</strong> 组深浅配对色

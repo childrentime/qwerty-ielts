@@ -3,92 +3,92 @@
     "name": "bg",
     "label": "页面背景",
     "group": "基础",
-    "light": "#f5f5f7",
-    "dark": "#000000"
+    "light": "#f7f7fa",
+    "dark": "#121216"
   },
   {
     "name": "surface",
     "label": "卡片与弹层",
     "group": "基础",
     "light": "#ffffff",
-    "dark": "#1c1c1e"
+    "dark": "#1e1d23"
   },
   {
     "name": "soft",
     "label": "次级背景",
     "group": "基础",
-    "light": "#f0f0f3",
-    "dark": "#2c2c2e"
+    "light": "#eeedf2",
+    "dark": "#29272f"
   },
   {
     "name": "line",
     "label": "分隔与边框",
     "group": "基础",
-    "light": "#dedee3",
-    "dark": "#38383a"
+    "light": "#e3e1e9",
+    "dark": "#3a3743"
   },
   {
     "name": "ink",
     "label": "主要文字",
     "group": "文字",
-    "light": "#1d1d1f",
-    "dark": "#f5f5f7"
+    "light": "#26232e",
+    "dark": "#f3f0f8"
   },
   {
     "name": "muted",
     "label": "辅助文字",
     "group": "文字",
-    "light": "#6e6e73",
-    "dark": "#a1a1a6"
+    "light": "#716d7a",
+    "dark": "#aca7b7"
   },
   {
     "name": "tint",
     "label": "链接与选中",
     "group": "交互",
-    "light": "#0066cc",
-    "dark": "#78b5ff"
+    "light": "#66518c",
+    "dark": "#cbb8ef"
   },
   {
     "name": "tint-hover",
     "label": "交互悬停",
     "group": "交互",
-    "light": "#0052a3",
-    "dark": "#a6cfff"
+    "light": "#4f3c73",
+    "dark": "#e2d2ff"
   },
   {
     "name": "action",
     "label": "主要操作",
     "group": "交互",
-    "light": "#0066cc",
-    "dark": "#0868ce"
+    "light": "#292532",
+    "dark": "#d9cdec"
   },
   {
     "name": "on-action",
     "label": "按钮文字",
     "group": "交互",
     "light": "#ffffff",
-    "dark": "#ffffff"
+    "dark": "#27222e"
   },
   {
     "name": "selection-surface",
     "label": "选中背景",
     "group": "交互",
-    "light": "#e8f1ff",
-    "dark": "#152c46"
+    "light": "#ece6f6",
+    "dark": "#342d42"
   },
   {
     "name": "selection",
     "label": "文字选中",
     "group": "交互",
-    "light": "#cce2ff",
-    "dark": "#24476e"
+    "light": "#d9ccec",
+    "dark": "#514260"
   },
   {
     "name": "selection-ink",
     "label": "选中文字",
     "group": "交互",
-    "light": "#1d1d1f",
-    "dark": "#f5f5f7"
+    "light": "#26232e",
+    "dark": "#f3f0f8"
   },
   {
     "name": "success",
@@ -143,15 +143,15 @@
     "name": "chart-bus",
     "label": "公共交通",
     "group": "图表",
-    "light": "#0066cc",
-    "dark": "#78b5ff"
+    "light": "#66518c",
+    "dark": "#cbb8ef"
   },
   {
     "name": "chart-bike",
     "label": "自行车",
     "group": "图表",
-    "light": "#686278",
-    "dark": "#b9b1ce"
+    "light": "#706d79",
+    "dark": "#aca8b5"
   },
   {
     "name": "shadow-small",
@@ -187,5 +187,54 @@
     "group": "层次",
     "light": "#1d1d1f",
     "dark": "#636366"
+  },
+  {
+    "name": "hero",
+    "label": "学习主卡",
+    "group": "品牌",
+    "light": "#292532",
+    "dark": "#2c2638"
+  },
+  {
+    "name": "on-hero",
+    "label": "主卡文字",
+    "group": "品牌",
+    "light": "#fbf8ff",
+    "dark": "#fbf8ff"
+  },
+  {
+    "name": "hero-muted",
+    "label": "主卡辅助文字",
+    "group": "品牌",
+    "light": "#c3bccc",
+    "dark": "#c9c0d5"
+  },
+  {
+    "name": "lavender",
+    "label": "词卡雾紫",
+    "group": "品牌",
+    "light": "#d9cbed",
+    "dark": "#c7b3e2"
+  },
+  {
+    "name": "on-lavender",
+    "label": "词卡墨色",
+    "group": "品牌",
+    "light": "#3c2e50",
+    "dark": "#31263f"
+  },
+  {
+    "name": "rose",
+    "label": "写作底色",
+    "group": "品牌",
+    "light": "#f4e8e7",
+    "dark": "#35282e"
+  },
+  {
+    "name": "on-rose",
+    "label": "写作强调",
+    "group": "品牌",
+    "light": "#765450",
+    "dark": "#e9beb7"
   }
 ]

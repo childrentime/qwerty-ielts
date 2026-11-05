@@ -31,7 +31,7 @@ export function initialState(): State {
     sessions: [],
     drafts: {},
     writingHistory: [],
-    settings: { goal: 20, target: '7.0', theme: 'light', accent: 'en-GB', autoAudio: false },
+    settings: { goal: 20, target: '7.0', theme: 'system', accent: 'en-GB', autoAudio: false },
     onboarded: false,
   }
 }

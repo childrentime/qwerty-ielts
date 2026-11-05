@@ -7,8 +7,21 @@ export function Brand({ small = false }: { small?: boolean }) {
   return (
     <div className={'brand ' + (small ? 'brand-small' : '')}>
       <span className="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32">
-          <path d="m5 8 6 17 5-14 5 14 6-17M11 25l5-14 5 14" />
+        <svg viewBox="0 0 32 32" fill="none">
+          <path
+            d="M5 9L10.5 23L16 12L21.5 23L27 9"
+            stroke="currentColor"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M10.5 23C12.5 18 19.5 18 21.5 23"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeDasharray="2 2.5"
+          />
         </svg>
       </span>
       <span>Wordloom</span>

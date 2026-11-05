@@ -12,13 +12,15 @@ Working name: Wordloom. The product connects vocabulary recognition with written
 - CloudKit / Sign in with Apple are not configured in this design build. Their interfaces expose the real disconnected state. Online AI writing assessment and IELTS score prediction are outside the agreed scope. AI is used only for pre-generating curated vocabulary content.
 - Device speech synthesis provides preview pronunciation. Production audio will use pre-generated officially licensed TTS files.
 
-## Visual direction — native refinement 0.3
+## Visual direction — Ink / Lilac 0.4
 
-The product uses a restrained, native Apple direction: system sans-serif typography, neutral grouped backgrounds, a single blue interaction color, clear titles, compact utility controls and standard platform navigation. Decorative paper illustrations, serif wordmarks and promotional headings have been removed. Product labels describe the action or content directly.
+Primary reference: [Nixtio — Language Learning Dashboard Web App UI](https://dribbble.com/shots/27301863-Language-Learning-Dashboard-Web-App-UI), viewed on 2026-11-05. Dribbble identifies Nixtio as a Dribbble Select agency. The page does not expose a publication date, so this is a currently public reference, not a verified newest release. Mobbin's discovery catalog was not accessible without login; no private catalog screens were claimed as reviewed.
+
+The reference informed restrained black actions, pale functional color and asymmetric composition. Wordloom's layout is original: one prominent ink learning card with a typographic word-card motif, genuine learning counts separated by rules, a compact recent-word list, and a rose writing entry. No reference artwork, photographs, source code, or product features were copied. Native screens retain NavigationStack, TabView and Form rather than mimicking a poster.
 
 ## Color
 
-`src/colors.json` is the source of truth for 27 paired light/dark semantic colors. Backgrounds are neutral; the blue tint communicates interaction, while green/red indicate review outcomes with icons as well as color. Primary controls have a separate action color to retain readable white labels. No one-off product colors are allowed outside the palette. The live board shows every pair.
+`src/colors.json` is the source of truth for 34 paired light/dark semantic colors. Backgrounds are neutral; the lilac tint communicates interaction, while green/red indicate review outcomes with icons as well as color. Primary controls have a separate action color to retain readable labels in both appearances. No one-off product colors are allowed outside the palette. The live board shows every pair.
 
 ## Typography
 
@@ -26,7 +28,7 @@ System sans-serif across navigation, learning content and writing. No remote fon
 
 ## Layout
 
-Desktop: 212px sidebar, 58px toolbar, grouped study surfaces and precise spacing. Mobile web: one-column cards and safe-area navigation. Native iOS: NavigationStack, native TabView, system segmented pickers, sheets and Form settings. Review keeps its primary action above the tab bar. The App reference board shows complete simulator screens and offers an enlarged view.
+Desktop: 204px sidebar (170px in narrow desktop panels), 64px toolbar, grouped study surfaces and precise spacing. Mobile web: one-column cards and safe-area navigation. Native iOS: NavigationStack, native TabView, system segmented pickers, sheets and Form settings. Review keeps its primary action above the tab bar. The App reference board shows complete simulator screens and offers an enlarged view.
 
 ## Components and states
 
@@ -45,9 +47,9 @@ Shared buttons, topic chips, activity rows, word cards, progress indicators, dia
 
 The design should make it possible to decide whether learning words on a computer and revisiting vocabulary plus corrected expressions on a phone creates a coherent product. The reviewable deliverable is a functional frontend, not a claim that native iOS packaging or production cloud services are complete.
 
-## Appearance and reference boards (0.3)
+## Appearance and reference boards (0.4)
 
-- `#/design` is the live color board: all 27 paired semantic, state, chart, border and shadow colors, with light/dark component examples and copyable values.
+- `#/design` is the live color board: all 34 paired semantic, state, chart, border and shadow colors, with light/dark component examples and copyable values.
 - `src/colors.json` is the color source; `pnpm colors` generates `src/themes.css`. Product CSS and SVG charts use tokens; regression checks reject new unpaired hex colors and verify a 4.5:1 contrast minimum for core text, primary controls and answer state pairs.
 - Every product page, search/word/sync dialog, chart and phone preview reads the theme. A persistent header button switches light/dark; settings also supports system preference updates.
 - `#/app` shows nine states of the independently implemented native SwiftUI prototype, each with light/dark simulator captures. It is a screen reference gallery; the separate phone webpage link remains the browser interaction preview.
@@ -55,3 +57,7 @@ The design should make it possible to decide whether learning words on a compute
 - Native/cloud boundary: twelve sample words and three writing examples are local prototype content. Web/iPhone data synchronization and Apple authentication await configuration. Writing uses local practice, reference examples and deterministic checks; online AI assessment is not planned.
 
 Design references: [Apple color](https://developer.apple.com/design/human-interface-guidelines/color), [typography](https://developer.apple.com/design/human-interface-guidelines/typography), and [tab bars](https://developer.apple.com/design/human-interface-guidelines/tab-bars). Apple guidelines informed semantic color and standard navigation; the concrete layouts are Wordloom design choices.
+
+## Verification — 0.4
+
+The web layout was checked at 1280×900, the default narrow desktop panel, and 390×844. Native captures cover all nine screen states in light and dark. Actual native interaction checked starting from Today, revealing all answer definitions, continuing to word 2/6, and changing appearance with the settings sheet open. These are design/prototype checks; live CloudKit synchronization is not configured.

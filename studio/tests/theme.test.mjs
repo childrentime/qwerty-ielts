@@ -27,6 +27,9 @@ test('primary text, controls and answer feedback stay readable in both themes', 
       ['muted', 'surface'],
       ['muted', 'bg'],
       ['on-action', 'action'],
+      ['on-hero', 'hero'],
+      ['on-lavender', 'lavender'],
+      ['on-rose', 'rose'],
       ['success', 'success-bg'],
       ['error', 'error-bg'],
     ]) {
@@ -38,7 +41,7 @@ test('primary text, controls and answer feedback stay readable in both themes', 
 test('product styles and charts cannot bypass paired theme colors', () => {
   for (const file of ['styles.css', 'refinement.css', 'App.tsx', 'Views.tsx', 'Writing.tsx', 'ui.tsx']) {
     const source = readFileSync(new URL('../src/' + file, import.meta.url), 'utf8')
-    assert.equal(/#[0-9a-f]{3,8}\b/i.test(source), false, `${file} has an unpaired color`)
+    assert.equal(/#[0-9a-f]{3,8}\b|rgba?\(/i.test(source), false, `${file} has an unpaired color`)
     for (const [, name] of source.matchAll(/var\(--([a-z-]+)\)/g))
       assert.ok(name === 'display-font' || byName[name], `${file}: missing token ${name}`)
   }
