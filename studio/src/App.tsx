@@ -98,9 +98,9 @@ export default function App() {
   }, [route, mobile])
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)')
-    const paramTheme = new URLSearchParams(window.location.search).get('theme')
+    const paramTheme = new URLSearchParams(window.location.search).get('theme') || ''
     const update = () => {
-      const currentSetting = ['light', 'dark', 'system'].includes(paramTheme || '') ? paramTheme : store.state.settings.theme
+      const currentSetting = ['light', 'dark', 'system'].includes(paramTheme) ? paramTheme : store.state.settings.theme
       const resolved =
         currentSetting === 'system' ? (media.matches ? 'dark' : 'light') : currentSetting
       document.documentElement.dataset.theme = resolved
