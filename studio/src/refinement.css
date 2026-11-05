@@ -1117,3 +1117,14 @@ h4 {
     transition: none !important;
   }
 }
+@media (max-width: 900px) and (min-width: 681px) {
+  .design-links {
+    flex-direction: column;
+    gap: 0;
+  }
+  .design-links button {
+    white-space: nowrap;
+    padding: 9px 0;
+    font-size: 11px;
+  }
+}
