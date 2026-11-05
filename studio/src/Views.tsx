@@ -81,83 +81,41 @@ export function Today({
     <div className="page today-page">
       <div className="today-intro">
         <div>
-          <span className="eyebrow">
-            {date} <span className="tiny-dot" /> A LITTLE, EVERY DAY
-          </span>
-          <h1>{seen ? '欢迎回来，继续生长。' : '今天，也让表达生长一点。'}</h1>
-          <p>从认识一个词，到写出自己的想法。</p>
+          <span className="eyebrow">{date}</span>
+          <h1>今日</h1>
+          <p>继续学习，或者回顾已经见过的词。</p>
         </div>
         <button className="goal-pill" onClick={onWelcome}>
           <Target size={15} />
-          目标 IELTS {store.state.settings.target}
+          IELTS {store.state.settings.target}
           <ChevronRight size={14} />
         </button>
       </div>
-      <section className="hero-panel">
-        <div className="hero-copy">
-          <span className="hero-kicker">
-            <span className="mini-spark">✳</span> WORDS INTO WORLDS
-          </span>
-          <h2>
-            让认识的词，
-            <br />
-            成为<span>会用的表达。</span>
-          </h2>
-          <p>
-            {mobile ? '在电脑上认真学过，在这里轻松再见。' : '在键盘上留下记忆，在句子里找到用法。'}
-            <br />
-            把一点点积累，带到下一次开口和落笔。
-          </p>
-          <div className="hero-actions">
-            <Button
-              onClick={() => (mobile ? navigate('review') : store.state.onboarded ? navigate('practice') : onWelcome())}
-            >
-              {mobile ? <BookOpen size={17} /> : <Keyboard size={17} />}
-              {mobile ? '开始复习' : '开始今日练词'}
-              <ArrowRight size={16} />
-            </Button>
-            <button className="hero-secondary" onClick={() => startWriting()}>
-              用词写一句
-              <ArrowUpRight size={16} />
-            </button>
+      <section className="study-start">
+        <div className="study-start-copy">
+          <span className="study-symbol">{mobile ? <BookOpen size={26} /> : <Keyboard size={26} />}</span>
+          <div>
+            <h2>{mobile ? '继续复习' : '开始今天的练习'}</h2>
+            <p>{mobile ? `${seen} 个见过的词，可以继续回顾。` : '听发音、记拼写，把新词留在学习记录里。'}</p>
           </div>
-          <span className="hero-bottom-note">按自己的节奏，今天就从一小组开始。</span>
         </div>
-        <div className="word-art" aria-label="从单词 sustainable，到搭配 sustainable development，再到完整句子">
-          <div className="art-back-sheet" />
-          <div className="art-sheet">
-            <div className="art-sheet-top">
-              <span>WORD NOTE / 002</span>
-              <Leaf size={16} />
-            </div>
-            <h3>
-              sustainable<span>adj. 可持续的</span>
-            </h3>
-            <div className="art-rule" />
-            <span className="art-small-label">A WORD BECOMES A PHRASE</span>
-            <p className="art-phrase">
-              sustainable
-              <br />
-              <em>development</em>
-            </p>
-            <div className="art-quote">
-              “Small changes can make
-              <br />
-              our cities more sustainable.”
-            </div>
-            <div className="art-sheet-footer">
-              <span>认识 · 连接 · 表达</span>
-              <span>↗</span>
-            </div>
-          </div>
-          <span className="art-bookmark" />
-          <span className="art-caption">Good words. Your own voice.</span>
+        <div className="study-start-actions">
+          <Button
+            onClick={() => (mobile ? navigate('review') : store.state.onboarded ? navigate('practice') : onWelcome())}
+          >
+            {mobile ? '开始复习' : '开始练词'}
+            <ArrowRight size={16} />
+          </Button>
+          <button className="quiet-button" onClick={() => startWriting()}>
+            写作练习
+            <ChevronRight size={14} />
+          </button>
         </div>
       </section>
       <div className="today-grid">
         <section className="journey-panel">
-          <SectionHead label="YOUR LEARNING LOOP" title="让学习连起来">
-            <span className="quiet-label">每一步，都是积累</span>
+          <SectionHead label="YOUR LEARNING LOOP" title="学习记录">
+            <span className="quiet-label">随时继续</span>
           </SectionHead>
           <div className="journey-steps">
             <button onClick={() => navigate('practice')}>
@@ -165,7 +123,7 @@ export function Today({
               <span className="step-icon">
                 <Keyboard size={21} />
               </span>
-              <h3>认识一个词</h3>
+              <h3>练词</h3>
               <p>听发音，敲下拼写</p>
               <div className="step-stat">
                 <strong>{seen}</strong>
@@ -178,8 +136,8 @@ export function Today({
               <span className="step-icon peach">
                 <BookOpen size={21} />
               </span>
-              <h3>换个方式再见</h3>
-              <p>不用打字，点选复习</p>
+              <h3>复习</h3>
+              <p>释义选择与听音辨词</p>
               <div className="step-stat">
                 <strong>{reviewed}</strong>
                 <span>个词已复习</span>
@@ -191,8 +149,8 @@ export function Today({
               <span className="step-icon sage">
                 <PenTool size={21} />
               </span>
-              <h3>写进自己的句子</h3>
-              <p>从搭配，到完整表达</p>
+              <h3>写作</h3>
+              <p>句子、Task 1 与 Task 2</p>
               <div className="step-stat">
                 <strong>{store.state.writingHistory.length}</strong>
                 <span>次表达已留下</span>
@@ -203,7 +161,7 @@ export function Today({
         </section>
         <section className="daily-panel">
           <div className="daily-head">
-            <h3>今日小目标</h3>
+            <h3>今日目标</h3>
             <button aria-label="调整每日目标" onClick={onWelcome}>
               <SlidersHorizontal size={16} />
             </button>
@@ -226,7 +184,7 @@ export function Today({
               </span>
             </div>
             <div>
-              <strong>{todayWords ? '一点点，也算数。' : '第一步，从一个词开始。'}</strong>
+              <strong>{todayWords ? '继续保持' : '还未开始'}</strong>
               <p>{todayWords ? `今天已经遇见 ${todayWords} 个词` : '今天的积累，从这里出发'}</p>
             </div>
           </div>
@@ -246,7 +204,7 @@ export function Today({
         <section className="recent-panel">
           <SectionHead
             label={recent.length ? 'WORDS YOU HAVE MET' : 'YOUR NEXT WORDS'}
-            title={recent.length ? '最近遇见的词' : '下一次，认识这些词'}
+            title={recent.length ? '最近的词' : '接下来学习'}
           >
             <TextLink onClick={() => navigate('library')}>打开词库</TextLink>
           </SectionHead>
@@ -269,11 +227,11 @@ export function Today({
             <PenTool size={22} strokeWidth={1.5} />
           </div>
           <span className="eyebrow">A WORD OF YOUR OWN</span>
-          <h3>{lastDraft ? '你的想法，值得接着写。' : '今天，用一个新词写一句。'}</h3>
+          <h3>{lastDraft ? '继续上次写作' : '句子练习'}</h3>
           <p>
             {lastDraft
               ? `${prompts.find((p) => p.id === lastDraft[0])?.title || '写作练习'} · 草稿已保留`
-              : '试着用 alleviate，谈谈城市里的交通。让认识的词，第一次成为你的表达。'}
+              : '使用学过的词，练习表达一个完整的想法。'}
           </p>
           <TextLink onClick={() => startWriting(lastDraft?.[0])}>
             {lastDraft ? '继续上次写作' : '开始句子练习'}
@@ -282,7 +240,7 @@ export function Today({
       </div>
       <div className="page-footnote">
         <span className="tiny-dot" />
-        此设备的学习记录会自动保存。<span>MAKE ROOM FOR A NEW WORD.</span>
+        学习记录自动保存在此设备。
       </div>
     </div>
   )
@@ -335,11 +293,11 @@ export function Practice({ store, mobile, toast, openWord, startWriting }: ViewP
         <div className="completion">
           <SuccessMark />
           <span className="eyebrow">A LITTLE MORE, EVERY DAY</span>
-          <h1>又和 {list.length} 个词熟悉了一点。</h1>
+          <h1>本组 {list.length} 个词已完成。</h1>
           <p>
             它们已经进入你的复习列表。
             <br />
-            现在可以换个方式再见，或挑一个写进句子。
+            现在可以复习，或挑一个写进句子。
           </p>
           <div className="completion-word-cloud">
             {list.map((w) => (
@@ -377,8 +335,8 @@ export function Practice({ store, mobile, toast, openWord, startWriting }: ViewP
     <div className="page practice-page">
       <PageHead
         eyebrow="MEET A WORD"
-        title={mobile ? '先和这些词见个面。' : '把一个词，敲进记忆里。'}
-        subtitle={mobile ? '轻点浏览，不需要输入。' : '跟着节奏，听一遍，再敲一遍。'}
+        title={mobile ? '浏览单词' : '练词'}
+        subtitle={mobile ? '回顾见过的词。' : '听发音，练习拼写。'}
       >
         <button className="quiet-button" onClick={() => navigate('library')}>
           <BookOpen size={16} />
@@ -595,7 +553,7 @@ export function Review({ store, mobile, toast, openWord, startWriting }: ViewPro
         <div className="completion">
           <SuccessMark />
           <span className="eyebrow">NICE TO MEET THEM AGAIN</span>
-          <h1>这一次，又记起了一些。</h1>
+          <h1>本组复习完成</h1>
           <p>
             完成 {queue.length} 张词卡，其中 {right} 张回答正确。
             <br />
@@ -631,11 +589,7 @@ export function Review({ store, mobile, toast, openWord, startWriting }: ViewPro
   if (!queue.length)
     return (
       <div className="page review-lobby">
-        <PageHead
-          eyebrow="NICE TO MEET YOU AGAIN"
-          title="把见过的词，再见一遍。"
-          subtitle="不需要打字，给记忆一点轻松的提醒。"
-        />
+        <PageHead eyebrow="NICE TO MEET YOU AGAIN" title="复习" subtitle="回顾电脑上见过的词。" />
         <div className="review-lobby-grid">
           <section className="review-start-panel">
             <div className="review-card-art">
@@ -650,7 +604,7 @@ export function Review({ store, mobile, toast, openWord, startWriting }: ViewPro
                 </span>
               </span>
             </div>
-            <h2>{ids.length ? `${ids.length} 个词，在这里等你。` : '你的词，会在这里等你。'}</h2>
+            <h2>{ids.length ? `${ids.length} 个见过的词` : '还没有见过的词'}</h2>
             <p>{ids.length ? '从最近没复习过的词开始，每组最多 10 张。' : '电脑练词时见过的单词，会自动进入这里。'}</p>
             <div className="review-mode-picker">
               <button className={mode === 'meaning' ? 'active' : ''} onClick={() => setMode('meaning')}>
@@ -672,9 +626,9 @@ export function Review({ store, mobile, toast, openWord, startWriting }: ViewPro
           <section className="review-aside">
             <span className="eyebrow">KEEP IT LIGHT</span>
             <h3>
-              一点空隙，
+              回顾释义、
               <br />
-              就够和一个词重逢。
+              发音与例句。
             </h3>
             <p>选择答案后，可以看到每个选项的释义和当前单词的常用搭配。</p>
             <div className="mini-review-stats">
@@ -823,11 +777,7 @@ export function Library({ store, openWord, toast }: ViewProps) {
   )
   return (
     <div className="page library-page">
-      <PageHead
-        eyebrow="YOUR GROWING VOCABULARY"
-        title="每个词，都有更多可能。"
-        subtitle="把零散的单词，慢慢连成自己的语言。"
-      >
+      <PageHead eyebrow="YOUR GROWING VOCABULARY" title="词库" subtitle="浏览主题词集、释义与例句。">
         <Tag>{words.length} 个体验词条</Tag>
       </PageHead>
       <div className="library-banner">
@@ -835,7 +785,7 @@ export function Library({ store, openWord, toast }: ViewProps) {
           <BookOpen size={26} strokeWidth={1.4} />
         </span>
         <div>
-          <strong>雅思主题词集</strong>
+          <strong>雅思词集</strong>
           <p>四个常用话题，连接听读与写作表达。</p>
         </div>
         <span className="library-banner-meta">
@@ -940,7 +890,7 @@ export function Library({ store, openWord, toast }: ViewProps) {
       {!filtered.length && (
         <Empty
           icon={<Search size={30} />}
-          title={filter === '已收藏' && !search ? '把想多看一眼的词，留在这里。' : '还没有找到这个词。'}
+          title={filter === '已收藏' && !search ? '暂无收藏' : '没有找到相关单词'}
           text={
             filter === '已见过'
               ? '去练词或打开词条加入复习，记录就会出现在这里。'
@@ -998,12 +948,12 @@ export function Preferences({ store, toast, openSync }: ViewProps & { openSync: 
   }
   return (
     <div className="page settings-page">
-      <PageHead eyebrow="YOUR SPACE, YOUR PACE" title="按你的习惯来。" subtitle="让学习空间，更适合自己。" />
+      <PageHead eyebrow="YOUR SPACE, YOUR PACE" title="设置" subtitle="管理学习偏好与记录。" />
       <div className="settings-layout">
         <section className="settings-profile">
           <span className="avatar avatar-large">W</span>
           <h2>我的 Wordloom</h2>
-          <p>每一点积累，都值得留下。</p>
+          <p>本地学习空间</p>
           <button className="profile-cloud" onClick={openSync}>
             <CloudOff size={16} />
             当前记录仅存于此设备

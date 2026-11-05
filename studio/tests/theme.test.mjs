@@ -26,7 +26,7 @@ test('primary text, controls and answer feedback stay readable in both themes', 
       ['ink', 'surface'],
       ['muted', 'surface'],
       ['muted', 'bg'],
-      ['on-forest', 'forest'],
+      ['on-action', 'action'],
       ['success', 'success-bg'],
       ['error', 'error-bg'],
     ]) {
@@ -36,9 +36,11 @@ test('primary text, controls and answer feedback stay readable in both themes', 
     }
 })
 test('product styles and charts cannot bypass paired theme colors', () => {
-  for (const file of ['styles.css', 'App.tsx', 'Views.tsx', 'Writing.tsx', 'ui.tsx']) {
+  for (const file of ['styles.css', 'refinement.css', 'App.tsx', 'Views.tsx', 'Writing.tsx', 'ui.tsx']) {
     const source = readFileSync(new URL('../src/' + file, import.meta.url), 'utf8')
     assert.equal(/#[0-9a-f]{3,8}\b/i.test(source), false, `${file} has an unpaired color`)
+    for (const [, name] of source.matchAll(/var\(--([a-z-]+)\)/g))
+      assert.ok(name === 'display-font' || byName[name], `${file}: missing token ${name}`)
   }
   const css = readFileSync(new URL('../src/themes.css', import.meta.url), 'utf8')
   for (const c of colors) {
@@ -51,12 +53,12 @@ test('product styles and charts cannot bypass paired theme colors', () => {
 test('all native captures remain intact RIFF WebP binaries after checkout', async () => {
   const { readdirSync } = await import('node:fs')
   const dir = new URL('../public/native/', import.meta.url)
-  const files = readdirSync(dir).filter(f => f.endsWith('.webp'))
+  const files = readdirSync(dir).filter((f) => f.endsWith('.webp'))
   assert.equal(files.length, 18)
   for (const name of files) {
     const bytes = readFileSync(new URL(name, dir))
-    assert.equal(bytes.toString('ascii',0,4),'RIFF',name)
-    assert.equal(bytes.toString('ascii',8,12),'WEBP',name)
-    assert.equal(bytes.readUInt32LE(4)+8, bytes.length, `${name}: changed binary length`)
+    assert.equal(bytes.toString('ascii', 0, 4), 'RIFF', name)
+    assert.equal(bytes.toString('ascii', 8, 12), 'WEBP', name)
+    assert.equal(bytes.readUInt32LE(4) + 8, bytes.length, `${name}: changed binary length`)
   }
 })

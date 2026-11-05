@@ -1,6 +1,6 @@
 # Wordloom product design build
 
-OpenDesign-adapted frontend implementation of the IELTS learning product: desktop vocabulary practice and writing, with a touch-first mobile review interface.
+OpenDesign-adapted frontend implementation of the IELTS learning product: desktop vocabulary practice and writing, with a touch-first mobile review interface and a native SwiftUI reference board. The current visual direction uses system typography, neutral surfaces and restrained blue actions.
 
 ## Run
 

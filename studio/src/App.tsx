@@ -64,6 +64,10 @@ export default function App() {
   const [selectedWord, setSelectedWord] = useState<Word | null>(null)
   const [search, setSearch] = useState('')
   const [promptId, setPromptId] = useState(prompts[0].id)
+  const [darkMode, setDarkMode] = useState(
+    store.state.settings.theme === 'dark' ||
+      (store.state.settings.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches),
+  )
   const [online, setOnline] = useState(navigator.onLine)
   const mainRef = useRef<HTMLElement>(null)
   const startWriting = (id?: string) => {
@@ -95,8 +99,13 @@ export default function App() {
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)')
     const update = () => {
-      document.documentElement.dataset.theme =
+      const resolved =
         store.state.settings.theme === 'system' ? (media.matches ? 'dark' : 'light') : store.state.settings.theme
+      document.documentElement.dataset.theme = resolved
+      setDarkMode(resolved === 'dark')
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim())
     }
     update()
     media.addEventListener('change', update)
@@ -145,16 +154,6 @@ export default function App() {
             <button type="button" className="brand-button" onClick={() => navigate('today')} aria-label="Wordloom 首页">
               <Brand />
             </button>
-            <div className="workspace-label">
-              <span className="workspace-icon">
-                <Leaf size={16} />
-              </span>
-              <span>
-                我的学习空间<small>IELTS JOURNEY</small>
-              </span>
-              <ChevronRight size={14} />
-            </div>
-            <span className="nav-section-label">学习</span>
             <nav aria-label="主要导航">
               {nav.map(({ id, label, en, icon: Icon }) => (
                 <button
@@ -168,9 +167,7 @@ export default function App() {
                   <span>{label}</span>
                   {id === 'review' && Object.keys(store.state.seen).length > 0 ? (
                     <span className="nav-count">{Object.keys(store.state.seen).length}</span>
-                  ) : (
-                    <span className="nav-en">{en}</span>
-                  )}
+                  ) : null}
                 </button>
               ))}
             </nav>
@@ -182,15 +179,6 @@ export default function App() {
                 <button onClick={() => navigate('app')} className={route === 'app' ? 'active' : ''}>
                   <Smartphone size={15} /> 原生 App
                 </button>
-              </div>
-              <div className="sidebar-note">
-                <span className="serif">A little, every day.</span>
-                <p>
-                  让每一次遇见，
-                  <br />
-                  都变成自己的表达。
-                </p>
-                <span className="note-line" />
               </div>
               <button
                 className={`nav-item ${route === 'settings' ? 'active' : ''}`}
@@ -246,13 +234,13 @@ export default function App() {
                 </>
               )}
               <IconButton
-                label={document.documentElement.dataset.theme === 'dark' ? '切换到浅色模式' : '切换到深色模式'}
+                label={darkMode ? '切换到浅色模式' : '切换到深色模式'}
                 onClick={() =>
                   store.setState((p) => ({
                     ...p,
                     settings: {
                       ...p.settings,
-                      theme: document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark',
+                      theme: darkMode ? 'light' : 'dark',
                     },
                   }))
                 }
@@ -380,7 +368,7 @@ export default function App() {
         )}
         {modal === 'search' && (
           <Modal
-            title="找一个词，或换个方向"
+            title="搜索"
             eyebrow="QUICK FIND"
             onClose={() => {
               setModal(null)
@@ -439,7 +427,7 @@ export default function App() {
           </Modal>
         )}
         {modal === 'sync' && (
-          <Modal title="从电脑，到你的口袋" eyebrow="YOUR WORDS, EVERYWHERE" onClose={() => setModal(null)}>
+          <Modal title="iCloud 同步" eyebrow="YOUR WORDS, EVERYWHERE" onClose={() => setModal(null)}>
             <div className="devices-art">
               <Monitor size={68} strokeWidth={1} />
               <span className="device-dots">
@@ -485,7 +473,7 @@ export default function App() {
           </Modal>
         )}
         {modal === 'help' && (
-          <Modal title="给专注留一点捷径" eyebrow="A FEW SHORTCUTS" onClose={() => setModal(null)}>
+          <Modal title="快捷键与帮助" eyebrow="A FEW SHORTCUTS" onClose={() => setModal(null)}>
             <div className="shortcut-row">
               <span>搜索单词与页面</span>
               <kbd>⌘ / Ctrl + K</kbd>
@@ -503,7 +491,7 @@ export default function App() {
               <kbd>Esc</kbd>
             </div>
             <div className="phrase-note">
-              <h3>从认识，到表达</h3>
+              <h3>学习方式</h3>
               <p>电脑练词时，显示过的词会进入复习列表。写完句子后保存练习，再到手机视图回顾你的表达。</p>
             </div>
             <Button className="full-width" onClick={() => setModal(null)}>
@@ -512,7 +500,7 @@ export default function App() {
           </Modal>
         )}
         {modal === 'welcome' && (
-          <Modal title="给进步一个小小的方向" eyebrow="MAKE IT YOURS" onClose={() => setModal(null)}>
+          <Modal title="学习目标" eyebrow="MAKE IT YOURS" onClose={() => setModal(null)}>
             <div className="welcome-leaf">
               <Leaf size={36} strokeWidth={1.2} />
             </div>

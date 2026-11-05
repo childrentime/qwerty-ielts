@@ -11,9 +11,7 @@ export function Brand({ small = false }: { small?: boolean }) {
           <path d="m5 8 6 17 5-14 5 14 6-17M11 25l5-14 5 14" />
         </svg>
       </span>
-      <span>
-        wordloom<span className="brand-dot">.</span>
-      </span>
+      <span>Wordloom</span>
     </div>
   )
 }

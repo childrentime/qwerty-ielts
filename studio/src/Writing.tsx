@@ -202,11 +202,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
     .slice(0, 3)
   return (
     <div className={`page writing-page ${focused ? 'focus-mode' : ''}`}>
-      <PageHead
-        eyebrow="YOUR WORDS, YOUR VOICE"
-        title="让想法，有自己的英文。"
-        subtitle="从一个句子开始，把学过的词真正用起来。"
-      >
+      <PageHead eyebrow="YOUR WORDS, YOUR VOICE" title="写作" subtitle="句子练习、Task 1 与 Task 2。">
         <span className="writing-goal">
           <TargetIcon />
           IELTS {store.state.settings.target} · 我的方向
@@ -237,7 +233,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
       </div>
       {historyView ? (
         <div className="writing-history">
-          <SectionHead title="写下过的，都在这里。">
+          <SectionHead title="我的写作">
             <span className="quiet-label">保留你的想法，也保留修改的过程</span>
           </SectionHead>
           {store.state.writingHistory.length ? (
@@ -268,7 +264,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
           ) : (
             <Empty
               icon={<PenTool size={32} />}
-              title="给自己的第一句，留一个位置。"
+              title="暂无写作记录"
               text="完成写作后保存练习，你的表达与修改就会出现在这里。"
             >
               <Button onClick={() => selectMode('sentence')}>
@@ -358,7 +354,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
                   maxLength={40000}
                   placeholder={
                     prompt.mode === 'sentence'
-                      ? '从你的第一个词开始…\n\n不必追求完美，先把想法写下来。'
+                      ? '在这里写下英文…'
                       : 'Write your response here…\n\nStart with your main idea, then develop it in your own words.'
                   }
                   spellCheck={false}
@@ -421,7 +417,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
               {sideTab === 'words' && (
                 <div className="support-body">
                   <span className="eyebrow">WORDS IN CONTEXT</span>
-                  <h3>给表达搭一座小桥。</h3>
+                  <h3>搭配与用法</h3>
                   <p className="support-intro">看看搭配，再决定它是否适合你的意思。</p>
                   {targetWords.map((w) => (
                     <div className="support-word" key={w.id}>
@@ -475,7 +471,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
               {sideTab === 'reference' && (
                 <div className="support-body reference-panel">
                   <span className="eyebrow">ONE WAY TO SAY IT</span>
-                  <h3>一种表达，不是唯一答案。</h3>
+                  <h3>参考表达</h3>
                   <p className="support-intro">可以比较思路与搭配，再回到你自己的句子。</p>
                   <div className="reference-text">
                     {prompt.reference.split('\n\n').map((p, i) => (
@@ -504,7 +500,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
                         </span>
                         <div>
                           <span className="eyebrow">A CLOSER LOOK</span>
-                          <h3>给表达一次回看。</h3>
+                          <h3>检查结果</h3>
                         </div>
                       </div>
                       <Tag>本地基础检查</Tag>
@@ -578,7 +574,7 @@ export function Writing(props: ViewProps & { initialPrompt: string }) {
                   ) : (
                     <div className="feedback-empty">
                       <Sparkles size={28} strokeWidth={1.3} />
-                      <h3>先写一点，再一起看看。</h3>
+                      <h3>本地检查</h3>
                       <p>检查词数、目标词使用和常见语法问题。你也可以载入示例，体验修改过程。</p>
                       <Button variant="secondary" onClick={loadExample}>
                         载入一段示例
@@ -682,11 +678,7 @@ function MobileWriting({ store, toast, openWord }: ViewProps) {
   }
   return (
     <div className="page mobile-writing-page">
-      <PageHead
-        eyebrow="YOUR OWN EXPRESSIONS"
-        title="写过的句子，再看一遍。"
-        subtitle="电脑上认真写，在这里轻松回顾。"
-      />
+      <PageHead eyebrow="YOUR OWN EXPRESSIONS" title="表达" subtitle="回顾电脑上保存的句子与表达。" />
       <div className="filter-tabs mobile-writing-tabs" role="tablist" aria-label="表达复习类型">
         <button
           role="tab"
@@ -728,7 +720,7 @@ function MobileWriting({ store, toast, openWord }: ViewProps) {
           ) : (
             <Empty
               icon={<FileText size={30} />}
-              title="你的想法，值得留下。"
+              title="暂无表达记录"
               text="在电脑完成写作并保存练习后，可以在这里回顾。"
             />
           )}
@@ -774,7 +766,7 @@ function MobileWriting({ store, toast, openWord }: ViewProps) {
       ) : done ? (
         <div className="completion mobile-expression-complete">
           <SuccessMark />
-          <h2>这些表达，又近了一点。</h2>
+          <h2>本组表达已回顾</h2>
           <p>
             回顾了 {records.length} 张{example ? '示例' : ''}表达卡。
             <br />
@@ -813,7 +805,7 @@ function MobileWriting({ store, toast, openWord }: ViewProps) {
               </span>
             </div>
             <span className="eyebrow">{changed ? 'WHICH EXPRESSION WORKS BETTER?' : 'A THOUGHT WORTH KEEPING'}</span>
-            <h2>{changed ? '哪种表达更自然？' : '再看看，你写下的想法。'}</h2>
+            <h2>{changed ? '哪种表达更自然？' : '回顾原句'}</h2>
             <p className="expression-prompt-cn">{prompt.mode === 'sentence' ? prompt.instruction : prompt.title}</p>
             {changed ? (
               <div className="expression-choices">

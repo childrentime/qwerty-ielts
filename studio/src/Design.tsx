@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { ArrowLeft, ArrowRight, Check, Moon, Sun, Smartphone, Monitor } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, Moon, Sun, Smartphone, Monitor, Maximize2 } from 'lucide-react'
 import colors from './colors.json'
-import { Button } from './ui'
+import { Button, Modal } from './ui'
 import { navigate } from './model'
 
 export function DesignBoard() {
@@ -16,11 +16,11 @@ export function DesignBoard() {
   }
   return (
     <div className="page design-page">
-      <span className="eyebrow">WORDLOOM / DESIGN SYSTEM 02</span>
+      <span className="eyebrow">WORDLOOM · DESIGN SYSTEM</span>
       <div className="design-heading">
         <div>
-          <h1>纸、墨，与一点绿。</h1>
-          <p>同一套语义色，两种光线。网页与原生 App 共用视觉语言。</p>
+          <h1>设计系统</h1>
+          <p>系统字体、语义颜色与原生控件。网页和 App 使用统一的视觉语言。</p>
         </div>
         <Button variant="secondary" onClick={() => navigate('app')}>
           <Smartphone size={17} />
@@ -38,12 +38,11 @@ export function DesignBoard() {
         {(['light', 'dark'] as const).map((mode) => (
           <section data-theme={mode} className="palette-sample" key={mode}>
             <div className="palette-mode">
-              {mode === 'light' ? <Sun size={17} /> : <Moon size={17} />}{' '}
-              {mode === 'light' ? '晨间 · Light' : '夜读 · Dark'}
+              {mode === 'light' ? <Sun size={17} /> : <Moon size={17} />} {mode === 'light' ? '浅色' : '深色'}
             </div>
-            <span className="eyebrow">A LITTLE, EVERY DAY.</span>
-            <h2 className="serif">Make it your own.</h2>
-            <p>从遇见单词，到写出自己的句子。</p>
+            <span className="eyebrow">WORDLOOM</span>
+            <h2 className="serif">继续复习</h2>
+            <p>12 个见过的词，接着上次继续。</p>
             <div className="sample-actions">
               <button>
                 开始复习 <ArrowRight size={15} />
@@ -100,86 +99,101 @@ const screens = [
   ['writing', '表达与写作', '句子、Task 1、Task 2，手机轻触回顾表达。'],
   ['essay', '写作回顾', '保留电脑上的原文、修改建议和可复用表达。'],
   ['library', '词集', '浏览、收藏、朗读和查看单词详情。'],
-  ['settings', '我的与外观', '主题、口音、学习目标和 iCloud 连接入口。'],
+  ['settings', '设置', '主题、口音、学习目标和 iCloud 连接入口。'],
   ['sync', '同步状态', '未连接时说明下一步，不显示虚构的同步成功。'],
 ] as const
 export function AppPrototype() {
   const [index, setIndex] = useState(0),
-    [mode, setMode] = useState<'light' | 'dark'>('light')
+    [mode, setMode] = useState<'light' | 'dark'>('light'),
+    [zoom, setZoom] = useState(false)
   const current = screens[index]
+  const picture = (
+    <img
+      className="native-screenshot"
+      src={`/native/${current[0]}-${mode}.webp`}
+      alt={`${current[1]}，${mode === 'light' ? '浅色' : '深色'}模式的原生 App 截图`}
+    />
+  )
   return (
-    <div className="page design-page">
-      <span className="eyebrow">WORDLOOM FOR IPHONE / SWIFTUI</span>
-      <div className="design-heading">
+    <div className="page prototype-page">
+      <div className="prototype-heading">
         <div>
-          <h1>学习，随身继续。</h1>
-          <p>独立编写的原生 iOS 原型。下面展示真实模拟器画面。</p>
+          <h1>iPhone 原型</h1>
+          <p>9 个页面 · SwiftUI 原生交互</p>
         </div>
         <Button variant="secondary" onClick={() => navigate('design')}>
-          查看色彩画板 <ArrowRight size={16} />
+          设计系统
+          <ArrowRight size={15} />
         </Button>
       </div>
-      <div className="native-showcase">
-        <aside>
-          <span className="eyebrow">APP SCREEN FLOW</span>
+      <div className="prototype-workspace">
+        <aside className="prototype-nav">
           {screens.map((s, i) => (
-            <button className={i === index ? 'active' : ''} key={s[0]} onClick={() => setIndex(i)}>
-              <span>{String(i + 1).padStart(2, '0')}</span>
+            <button
+              key={s[0]}
+              aria-current={i === index ? 'page' : undefined}
+              className={i === index ? 'active' : ''}
+              onClick={() => setIndex(i)}
+            >
               {s[1]}
-              <ArrowRight size={15} />
+              <ChevronMark />
             </button>
           ))}
-          <div className="native-boundary">
-            <strong>可运行的原生交互</strong>
-            <p>底部导航、选择题、收藏、表达卡片、写作详情和外观切换已实现。跨设备同步等待 iCloud 配置。</p>
+          <div className="prototype-notes">
+            <strong>可在模拟器操作</strong>
+            <p>复习、收藏、表达回顾与设置已实现。iCloud 同步待配置。</p>
+            <a href="/?view=phone#/review" target="_blank" rel="noreferrer">
+              手机网页
+              <ArrowRight size={13} />
+            </a>
           </div>
         </aside>
-        <div className="native-preview">
-          <div className="native-toolbar">
+        <section className="prototype-stage">
+          <div className="prototype-toolbar">
             <div className="segmented">
-              <button className={mode === 'light' ? 'active' : ''} onClick={() => setMode('light')}>
-                <Sun size={14} />
-                浅色
-              </button>
-              <button className={mode === 'dark' ? 'active' : ''} onClick={() => setMode('dark')}>
-                <Moon size={14} />
-                深色
-              </button>
+              {(['light', 'dark'] as const).map((m) => (
+                <button
+                  key={m}
+                  aria-pressed={mode === m}
+                  className={mode === m ? 'active' : ''}
+                  onClick={() => setMode(m)}
+                >
+                  {m === 'light' ? <Sun size={14} /> : <Moon size={14} />} {m === 'light' ? '浅色' : '深色'}
+                </button>
+              ))}
             </div>
-            <span>iPhone · iOS Simulator</span>
-          </div>
-          <img
-            className="native-screenshot"
-            src={`/native/${current[0]}-${mode}.webp`}
-            alt={`${current[1]}，${mode === 'light' ? '浅色' : '深色'}模式的原生 App 截图`}
-          />
-          <div className="native-pagination">
-            <button aria-label="上一屏" onClick={() => setIndex((index + screens.length - 1) % screens.length)}>
-              <ArrowLeft size={18} />
-            </button>
-            <span>
-              {current[1]} · {index + 1}/{screens.length}
-            </span>
-            <button aria-label="下一屏" onClick={() => setIndex((index + 1) % screens.length)}>
-              <ArrowRight size={18} />
+            <button className="prototype-zoom-button" onClick={() => setZoom(true)}>
+              <Maximize2 size={15} />
+              放大
             </button>
           </div>
-        </div>
-        <div className="native-description">
-          <span className="eyebrow">{current[0].toUpperCase()}</span>
-          <h2>{current[1]}</h2>
-          <p>{current[2]}</p>
-          <hr />
-          <p>电脑端负责输入和创作；手机端用来回顾见过的词，以及自己写过的表达。</p>
-          <a href="/?view=phone#/review" target="_blank" rel="noreferrer">
-            <Smartphone size={16} /> 打开手机交互网页 <ArrowRight size={14} />
-          </a>
-          <button onClick={() => navigate('today')}>
-            <Monitor size={16} />
-            返回电脑学习空间
+          <button className="prototype-picture" aria-label="放大当前 App 页面" onClick={() => setZoom(true)}>
+            {picture}
           </button>
-        </div>
+          <div className="prototype-caption">
+            <button aria-label="上一屏" onClick={() => setIndex((index + screens.length - 1) % screens.length)}>
+              <ArrowLeft size={17} />
+            </button>
+            <div>
+              <strong>{current[1]}</strong>
+              <span>
+                {index + 1} / {screens.length}
+              </span>
+            </div>
+            <button aria-label="下一屏" onClick={() => setIndex((index + 1) % screens.length)}>
+              <ArrowRight size={17} />
+            </button>
+          </div>
+        </section>
       </div>
+      {zoom && (
+        <Modal title={current[1]} eyebrow={mode === 'light' ? '浅色' : '深色'} onClose={() => setZoom(false)} wide>
+          <div className="prototype-zoom">{picture}</div>
+        </Modal>
+      )}
     </div>
   )
+}
+function ChevronMark() {
+  return <ArrowRight size={14} />
 }

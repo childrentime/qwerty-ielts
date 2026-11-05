@@ -1,541 +1,191 @@
 [
   {
     "name": "bg",
-    "label": "画布",
-    "group": "基础与状态",
-    "light": "#f7f8f4",
-    "dark": "#191f1a"
+    "label": "页面背景",
+    "group": "基础",
+    "light": "#f5f5f7",
+    "dark": "#000000"
   },
   {
     "name": "surface",
-    "label": "卡片 / 弹层",
-    "group": "基础与状态",
-    "light": "#fff",
-    "dark": "#222a23"
+    "label": "卡片与弹层",
+    "group": "基础",
+    "light": "#ffffff",
+    "dark": "#1c1c1e"
   },
   {
     "name": "soft",
-    "label": "次级表面",
-    "group": "基础与状态",
-    "light": "#f0f2ec",
-    "dark": "#2a332b"
-  },
-  {
-    "name": "cream",
-    "label": "暖色表面",
-    "group": "基础与状态",
-    "light": "#eeeee2",
-    "dark": "#30382d"
+    "label": "次级背景",
+    "group": "基础",
+    "light": "#f0f0f3",
+    "dark": "#2c2c2e"
   },
   {
     "name": "line",
     "label": "分隔与边框",
-    "group": "基础与状态",
-    "light": "#e1e5dc",
-    "dark": "#3b453b"
+    "group": "基础",
+    "light": "#dedee3",
+    "dark": "#38383a"
   },
   {
     "name": "ink",
     "label": "主要文字",
-    "group": "基础与状态",
-    "light": "#27352c",
-    "dark": "#e5ebdf"
+    "group": "文字",
+    "light": "#1d1d1f",
+    "dark": "#f5f5f7"
   },
   {
     "name": "muted",
     "label": "辅助文字",
-    "group": "基础与状态",
-    "light": "#687366",
-    "dark": "#a0ad9d"
+    "group": "文字",
+    "light": "#6e6e73",
+    "dark": "#a1a1a6"
   },
   {
-    "name": "forest",
-    "label": "品牌与主要操作",
-    "group": "基础与状态",
-    "light": "#244f40",
-    "dark": "#b1d0b3"
+    "name": "tint",
+    "label": "链接与选中",
+    "group": "交互",
+    "light": "#0066cc",
+    "dark": "#78b5ff"
   },
   {
-    "name": "forest-hover",
-    "label": "悬停操作",
-    "group": "基础与状态",
-    "light": "#193d30",
-    "dark": "#c7dfc6"
+    "name": "tint-hover",
+    "label": "交互悬停",
+    "group": "交互",
+    "light": "#0052a3",
+    "dark": "#a6cfff"
   },
   {
-    "name": "on-forest",
-    "label": "操作上的文字",
-    "group": "基础与状态",
-    "light": "#fff",
-    "dark": "#183025"
+    "name": "action",
+    "label": "主要操作",
+    "group": "交互",
+    "light": "#0066cc",
+    "dark": "#0868ce"
   },
   {
-    "name": "accent",
-    "label": "陶土强调",
-    "group": "基础与状态",
-    "light": "#b8714b",
-    "dark": "#d59c72"
+    "name": "on-action",
+    "label": "按钮文字",
+    "group": "交互",
+    "light": "#ffffff",
+    "dark": "#ffffff"
   },
   {
-    "name": "sage",
+    "name": "selection-surface",
     "label": "选中背景",
-    "group": "基础与状态",
-    "light": "#e8eee4",
-    "dark": "#303e30"
-  },
-  {
-    "name": "success",
-    "label": "正确文字",
-    "group": "基础与状态",
-    "light": "#34664c",
-    "dark": "#b3d4b1"
-  },
-  {
-    "name": "success-bg",
-    "label": "正确背景",
-    "group": "基础与状态",
-    "light": "#edf5ed",
-    "dark": "#2b3b2d"
-  },
-  {
-    "name": "error",
-    "label": "错误文字",
-    "group": "基础与状态",
-    "light": "#a84d3e",
-    "dark": "#eba696"
-  },
-  {
-    "name": "error-bg",
-    "label": "错误背景",
-    "group": "基础与状态",
-    "light": "#fbefeb",
-    "dark": "#42302b"
+    "group": "交互",
+    "light": "#e8f1ff",
+    "dark": "#152c46"
   },
   {
     "name": "selection",
     "label": "文字选中",
-    "group": "插画与细节",
-    "light": "#ccdbc2",
-    "dark": "#415a42"
+    "group": "交互",
+    "light": "#cce2ff",
+    "dark": "#24476e"
   },
   {
     "name": "selection-ink",
-    "label": "selection ink",
-    "group": "插画与细节",
-    "light": "#163d2c",
-    "dark": "#edf4e6"
+    "label": "选中文字",
+    "group": "交互",
+    "light": "#1d1d1f",
+    "dark": "#f5f5f7"
   },
   {
-    "name": "status",
-    "label": "本地状态",
-    "group": "插画与细节",
-    "light": "#7b9c76",
-    "dark": "#9fbd96"
+    "name": "success",
+    "label": "正确文字",
+    "group": "状态",
+    "light": "#237b35",
+    "dark": "#76d28a"
   },
   {
-    "name": "shadow-small",
-    "label": "shadow small",
-    "group": "插画与细节",
-    "light": "#163d2c0a",
-    "dark": "#00000026"
-  },
-  {
-    "name": "art-back",
-    "label": "art back",
-    "group": "插画与细节",
-    "light": "#d5ddcc",
-    "dark": "#354332"
-  },
-  {
-    "name": "art-paper",
-    "label": "art paper",
-    "group": "插画与细节",
-    "light": "#fdfcf6",
-    "dark": "#2b352b"
-  },
-  {
-    "name": "shadow-art",
-    "label": "shadow art",
-    "group": "插画与细节",
-    "light": "#35422e13",
-    "dark": "#00000030"
-  },
-  {
-    "name": "art-ink",
-    "label": "art ink",
-    "group": "插画与细节",
-    "light": "#324838",
-    "dark": "#d7e3cc"
-  },
-  {
-    "name": "art-label",
-    "label": "art label",
-    "group": "插画与细节",
-    "light": "#8d9788",
-    "dark": "#b1c0a8"
-  },
-  {
-    "name": "art-subtitle",
-    "label": "art subtitle",
-    "group": "插画与细节",
-    "light": "#808779",
-    "dark": "#b3bfa9"
-  },
-  {
-    "name": "art-rule",
-    "label": "art rule",
-    "group": "插画与细节",
-    "light": "#e2e5d7",
-    "dark": "#46513f"
-  },
-  {
-    "name": "art-micro",
-    "label": "art micro",
-    "group": "插画与细节",
-    "light": "#8e9784",
-    "dark": "#a3b398"
-  },
-  {
-    "name": "art-script",
-    "label": "art script",
-    "group": "插画与细节",
-    "light": "#729071",
-    "dark": "#a6c29b"
-  },
-  {
-    "name": "art-quote",
-    "label": "art quote",
-    "group": "插画与细节",
-    "light": "#77836f",
-    "dark": "#b2c0a5"
-  },
-  {
-    "name": "art-footer",
-    "label": "art footer",
-    "group": "插画与细节",
-    "light": "#9aa08e",
-    "dark": "#9ba991"
-  },
-  {
-    "name": "art-ribbon",
-    "label": "art ribbon",
-    "group": "插画与细节",
-    "light": "#bb805a",
-    "dark": "#d2a079"
-  },
-  {
-    "name": "art-caption",
-    "label": "art caption",
-    "group": "插画与细节",
-    "light": "#7c8972",
-    "dark": "#b1bfa4"
-  },
-  {
-    "name": "peach-bg",
-    "label": "peach bg",
-    "group": "插画与细节",
-    "light": "#f4ece3",
-    "dark": "#3c3329"
-  },
-  {
-    "name": "peach-ink",
-    "label": "peach ink",
-    "group": "插画与细节",
-    "light": "#ad7854",
-    "dark": "#dbad85"
-  },
-  {
-    "name": "olive-bg",
-    "label": "olive bg",
-    "group": "插画与细节",
-    "light": "#eeeee0",
-    "dark": "#36392b"
-  },
-  {
-    "name": "olive-ink",
-    "label": "olive ink",
-    "group": "插画与细节",
-    "light": "#8b8d5f",
-    "dark": "#c6c493"
-  },
-  {
-    "name": "chart-week",
-    "label": "chart week",
-    "group": "图表",
-    "light": "#799575",
-    "dark": "#a4bf99"
-  },
-  {
-    "name": "banner-bg",
-    "label": "banner bg",
-    "group": "插画与细节",
-    "light": "#2e4e3d",
-    "dark": "#293f31"
-  },
-  {
-    "name": "banner-ink",
-    "label": "banner ink",
-    "group": "插画与细节",
-    "light": "#f7f8ee",
-    "dark": "#f1f3e8"
-  },
-  {
-    "name": "banner-icon",
-    "label": "banner icon",
-    "group": "插画与细节",
-    "light": "#c2cdb0",
-    "dark": "#c2d0b2"
-  },
-  {
-    "name": "banner-kicker",
-    "label": "banner kicker",
-    "group": "插画与细节",
-    "light": "#b7c5ad",
-    "dark": "#bbceae"
-  },
-  {
-    "name": "banner-muted",
-    "label": "banner muted",
-    "group": "插画与细节",
-    "light": "#becbb4",
-    "dark": "#bfceb6"
-  },
-  {
-    "name": "banner-link",
-    "label": "banner link",
-    "group": "插画与细节",
-    "light": "#f0e7ce",
-    "dark": "#efe5c7"
-  },
-  {
-    "name": "typing-idle",
-    "label": "typing idle",
-    "group": "插画与细节",
-    "light": "#b0b7aa",
-    "dark": "#7d8c77"
-  },
-  {
-    "name": "focus-shadow",
-    "label": "focus shadow",
-    "group": "插画与细节",
-    "light": "#244f4007",
-    "dark": "#b1d0b317"
-  },
-  {
-    "name": "error-border",
-    "label": "error border",
-    "group": "插画与细节",
-    "light": "#c99482",
-    "dark": "#b77d69"
+    "name": "success-bg",
+    "label": "正确背景",
+    "group": "状态",
+    "light": "#ecf7ee",
+    "dark": "#17351f"
   },
   {
     "name": "success-border",
-    "label": "success border",
-    "group": "插画与细节",
-    "light": "#b6c7a9",
-    "dark": "#5a7652"
+    "label": "正确边框",
+    "group": "状态",
+    "light": "#a8d6b2",
+    "dark": "#386b45"
   },
   {
-    "name": "review-back",
-    "label": "review back",
-    "group": "插画与细节",
-    "light": "#d8e1d2",
-    "dark": "#354632"
+    "name": "error",
+    "label": "错误文字",
+    "group": "状态",
+    "light": "#c6342c",
+    "dark": "#ff8a80"
   },
   {
-    "name": "review-middle",
-    "label": "review middle",
-    "group": "插画与细节",
-    "light": "#f0e6d2",
-    "dark": "#453c2b"
+    "name": "error-bg",
+    "label": "错误背景",
+    "group": "状态",
+    "light": "#fff0ee",
+    "dark": "#3c1c1a"
   },
   {
-    "name": "review-paper",
-    "label": "review paper",
-    "group": "插画与细节",
-    "light": "#fcfcf5",
-    "dark": "#303c2e"
-  },
-  {
-    "name": "review-ink",
-    "label": "review ink",
-    "group": "插画与细节",
-    "light": "#4b6c4f",
-    "dark": "#bbd0ac"
-  },
-  {
-    "name": "shadow-review",
-    "label": "shadow review",
-    "group": "插画与细节",
-    "light": "#23382409",
-    "dark": "#00000026"
-  },
-  {
-    "name": "answer-correct",
-    "label": "answer correct",
-    "group": "插画与细节",
-    "light": "#91b095",
-    "dark": "#789972"
-  },
-  {
-    "name": "answer-correct-inner",
-    "label": "answer correct inner",
-    "group": "插画与细节",
-    "light": "#a6bf9e",
-    "dark": "#65845d"
-  },
-  {
-    "name": "answer-wrong",
-    "label": "answer wrong",
-    "group": "插画与细节",
-    "light": "#d4a295",
-    "dark": "#c28c79"
-  },
-  {
-    "name": "answer-wrong-inner",
-    "label": "answer wrong inner",
-    "group": "插画与细节",
-    "light": "#d7b5a7",
-    "dark": "#916a58"
-  },
-  {
-    "name": "note-border",
-    "label": "note border",
-    "group": "插画与细节",
-    "light": "#8baa7b",
-    "dark": "#718f60"
-  },
-  {
-    "name": "target-border",
-    "label": "target border",
-    "group": "插画与细节",
-    "light": "#bfcbb4",
-    "dark": "#677a5b"
-  },
-  {
-    "name": "reference-border",
-    "label": "reference border",
-    "group": "插画与细节",
-    "light": "#bbc9ae",
-    "dark": "#687d5b"
-  },
-  {
-    "name": "shadow-card",
-    "label": "shadow card",
-    "group": "插画与细节",
-    "light": "#1b392b08",
-    "dark": "#00000026"
-  },
-  {
-    "name": "shadow-knob",
-    "label": "shadow knob",
-    "group": "插画与细节",
-    "light": "#0002",
-    "dark": "#0005"
-  },
-  {
-    "name": "shadow-toast",
-    "label": "shadow toast",
-    "group": "插画与细节",
-    "light": "#18342525",
-    "dark": "#00000050"
-  },
-  {
-    "name": "scrim",
-    "label": "scrim",
-    "group": "插画与细节",
-    "light": "#15291e4d",
-    "dark": "#070d0acf"
-  },
-  {
-    "name": "shadow-modal",
-    "label": "shadow modal",
-    "group": "插画与细节",
-    "light": "#12271c25",
-    "dark": "#00000065"
-  },
-  {
-    "name": "device-dot",
-    "label": "device dot",
-    "group": "插画与细节",
-    "light": "#a8b99d",
-    "dark": "#829b75"
-  },
-  {
-    "name": "stage-bg",
-    "label": "stage bg",
-    "group": "插画与细节",
-    "light": "#e1e6dd",
-    "dark": "#121912"
-  },
-  {
-    "name": "device-border",
-    "label": "device border",
-    "group": "插画与细节",
-    "light": "#2c3930",
-    "dark": "#66785e"
-  },
-  {
-    "name": "device-shadow",
-    "label": "device shadow",
-    "group": "插画与细节",
-    "light": "#344b3030",
-    "dark": "#00000060"
-  },
-  {
-    "name": "device-outline",
-    "label": "device outline",
-    "group": "插画与细节",
-    "light": "#9ca892",
-    "dark": "#46573d"
-  },
-  {
-    "name": "stage-ink",
-    "label": "stage ink",
-    "group": "插画与细节",
-    "light": "#66745e",
-    "dark": "#afbea5"
-  },
-  {
-    "name": "stage-button",
-    "label": "stage button",
-    "group": "插画与细节",
-    "light": "#f5f7ef",
-    "dark": "#2c3628"
-  },
-  {
-    "name": "stage-border",
-    "label": "stage border",
-    "group": "插画与细节",
-    "light": "#cad4c4",
-    "dark": "#485d40"
-  },
-  {
-    "name": "stage-button-ink",
-    "label": "stage button ink",
-    "group": "插画与细节",
-    "light": "#3f543d",
-    "dark": "#cfddc6"
+    "name": "error-border",
+    "label": "错误边框",
+    "group": "状态",
+    "light": "#e4aaa6",
+    "dark": "#854a46"
   },
   {
     "name": "chart-car",
-    "label": "图表 / 汽车",
+    "label": "汽车",
     "group": "图表",
-    "light": "#bb7755",
-    "dark": "#e0a17d"
+    "light": "#b66029",
+    "dark": "#e2a06f"
   },
   {
     "name": "chart-bus",
-    "label": "图表 / 公交",
+    "label": "公共交通",
     "group": "图表",
-    "light": "#467b62",
-    "dark": "#9bc7a8"
+    "light": "#0066cc",
+    "dark": "#78b5ff"
   },
   {
     "name": "chart-bike",
-    "label": "图表 / 骑行",
+    "label": "自行车",
     "group": "图表",
-    "light": "#9b9d73",
-    "dark": "#c5c58e"
+    "light": "#686278",
+    "dark": "#b9b1ce"
+  },
+  {
+    "name": "shadow-small",
+    "label": "控件阴影",
+    "group": "层次",
+    "light": "#00000008",
+    "dark": "#00000030"
+  },
+  {
+    "name": "shadow-card",
+    "label": "卡片阴影",
+    "group": "层次",
+    "light": "#00000006",
+    "dark": "#00000020"
+  },
+  {
+    "name": "shadow-modal",
+    "label": "弹层阴影",
+    "group": "层次",
+    "light": "#00000024",
+    "dark": "#00000066"
+  },
+  {
+    "name": "scrim",
+    "label": "弹层遮罩",
+    "group": "层次",
+    "light": "#00000035",
+    "dark": "#00000099"
+  },
+  {
+    "name": "device-border",
+    "label": "设备外框",
+    "group": "层次",
+    "light": "#1d1d1f",
+    "dark": "#636366"
   }
 ]

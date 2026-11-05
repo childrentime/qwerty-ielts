@@ -12,17 +12,21 @@ Working name: Wordloom. The product connects vocabulary recognition with written
 - CloudKit / Sign in with Apple are not configured in this design build. Their interfaces expose the real disconnected state. Online AI writing assessment and IELTS score prediction are outside the agreed scope. AI is used only for pre-generating curated vocabulary content.
 - Device speech synthesis provides preview pronunciation. Production audio will use pre-generated officially licensed TTS files.
 
+## Visual direction — native refinement 0.3
+
+The product uses a restrained, native Apple direction: system sans-serif typography, neutral grouped backgrounds, a single blue interaction color, clear titles, compact utility controls and standard platform navigation. Decorative paper illustrations, serif wordmarks and promotional headings have been removed. Product labels describe the action or content directly.
+
 ## Color
 
-Warm paper #f7f7f2; white surfaces #ffffff; forest ink #244f40; graphite #242b27; muted sage #e9eee5; warm orange #bd7049; restrained red/green for answer feedback. Dark appearance uses charcoal paper and soft sage ink. All tokens have semantic names and contrast-conscious foregrounds.
+`src/colors.json` is the source of truth for 27 paired light/dark semantic colors. Backgrounds are neutral; the blue tint communicates interaction, while green/red indicate review outcomes with icons as well as color. Primary controls have a separate action color to retain readable white labels. No one-off product colors are allowed outside the palette. The live board shows every pair.
 
 ## Typography
 
-English learning material uses Georgia, a locally available editorial serif. Navigation and Chinese copy use a native readable sans-serif stack. English words have generous leading and distinct type scale. Labels use small, spaced uppercase Latin text; Chinese body text remains at least 14px on desktop and 15px on mobile. No remote font dependency.
+System sans-serif across navigation, learning content and writing. No remote fonts. Distinct title, body, secondary and caption roles; English words use medium system type instead of a decorative serif. Native iOS uses system text styles and standard navigation titles.
 
 ## Layout
 
-Desktop: 224px navigation rail, 72px utility bar, max 1280px content canvas. An editorial split hero and ruled word rows establish a study-space character. Practice is focused; writing uses a prompt/editor/support split. Mobile: safe-area-aware four-tab navigation, one-column cards, full-width touch choices, sticky primary actions. A switchable 414px phone viewport lets desktop users inspect the actual responsive interface.
+Desktop: 212px sidebar, 58px toolbar, grouped study surfaces and precise spacing. Mobile web: one-column cards and safe-area navigation. Native iOS: NavigationStack, native TabView, system segmented pickers, sheets and Form settings. Review keeps its primary action above the tab bar. The App reference board shows complete simulator screens and offers an enlarged view.
 
 ## Components and states
 
@@ -41,11 +45,13 @@ Shared buttons, topic chips, activity rows, word cards, progress indicators, dia
 
 The design should make it possible to decide whether learning words on a computer and revisiting vocabulary plus corrected expressions on a phone creates a coherent product. The reviewable deliverable is a functional frontend, not a claim that native iOS packaging or production cloud services are complete.
 
-## Appearance and reference boards (0.2)
+## Appearance and reference boards (0.3)
 
-- `#/design` is the live color board: all 77 paired semantic, state, chart, illustration, border and shadow colors, with light/dark component examples and copyable values.
+- `#/design` is the live color board: all 27 paired semantic, state, chart, border and shadow colors, with light/dark component examples and copyable values.
 - `src/colors.json` is the color source; `pnpm colors` generates `src/themes.css`. Product CSS and SVG charts use tokens; regression checks reject new unpaired hex colors and verify a 4.5:1 contrast minimum for core text, primary controls and answer state pairs.
 - Every product page, search/word/sync dialog, chart and phone preview reads the theme. A persistent header button switches light/dark; settings also supports system preference updates.
 - `#/app` shows nine states of the independently implemented native SwiftUI prototype, each with light/dark simulator captures. It is a screen reference gallery; the separate phone webpage link remains the browser interaction preview.
 - Native source is kept outside this public GPL repository. It was built and checked on a dedicated iPhone 16e simulator. This public directory contains only the exported WebP UI captures.
 - Native/cloud boundary: twelve sample words and three writing examples are local prototype content. Web/iPhone data synchronization and Apple authentication await configuration. Writing uses local practice, reference examples and deterministic checks; online AI assessment is not planned.
+
+Design references: [Apple color](https://developer.apple.com/design/human-interface-guidelines/color), [typography](https://developer.apple.com/design/human-interface-guidelines/typography), and [tab bars](https://developer.apple.com/design/human-interface-guidelines/tab-bars). Apple guidelines informed semantic color and standard navigation; the concrete layouts are Wordloom design choices.
